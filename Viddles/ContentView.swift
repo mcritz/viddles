@@ -31,6 +31,11 @@ struct Meal: Identifiable, Hashable, Equatable, Codable, CustomStringConvertible
         lhs.id == rhs.id
     }
     
+    mutating func vomit() {
+        guard noms.count > 0 else { return }
+        noms.removeLast()
+    }
+    
     mutating func eat(omNom: Nom) {
         noms.append(omNom)
     }
@@ -63,6 +68,14 @@ class MealDay: Identifiable, ObservableObject, CustomStringConvertible {
     }
     @Published var meals = [Meal]()
     let created: Date = Date()
+    
+    func vomit(meal: Meal) {
+        guard let indx = self.meals.firstIndex(of: meal) else { return }
+        var thisMeal = self.meals.remove(at: indx)
+        thisMeal.vomit()
+        if thisMeal.noms.count < 1 { return }
+        self.meals.insert(thisMeal, at: indx)
+    }
     
     func eat(nom: Nom) {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -111,6 +124,9 @@ struct ContentView: View {
                         Text(meel.description)
                             .font(.largeTitle)
                             .multilineTextAlignment(.center)
+                    }.onTapGesture {
+                        self.mealDay.vomit(meal: meel)
+                        print("hi")
                     }
                 }
             }
@@ -124,7 +140,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .background(Color.green)
                     .cornerRadius(40)
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 20.0)
             }
         }
     }
