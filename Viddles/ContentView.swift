@@ -116,20 +116,21 @@ struct ContentView: View {
     @ObservedObject var mealDay = MealDay()
     
     var body: some View {
-        VStack(spacing: 50) {
-            Text(mealDay.description).font(.headline)
-            VStack {
-                ForEach(mealDay.meals, id: \.self) { meel in
-                    HStack {
-                        Text(meel.description)
-                            .font(.largeTitle)
-                            .multilineTextAlignment(.center)
-                    }.onTapGesture {
-                        self.mealDay.vomit(meal: meel)
-                        print("hi")
+        VStack {
+            ScrollView {
+                Text(mealDay.description).font(.headline)
+                VStack {
+                    ForEach(mealDay.meals, id: \.self) { meel in
+                        HStack {
+                            Text(meel.description)
+                                .font(.largeTitle)
+                                .multilineTextAlignment(.center)
+                        }.onTapGesture {
+                            self.mealDay.vomit(meal: meel)
+                        }
                     }
                 }
-            }
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             Divider()
             Button(action: {
                 self.mealDay.eat(nom: Nom())
