@@ -117,20 +117,23 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                Text(mealDay.description).font(.headline)
-                VStack {
-                    ForEach(mealDay.meals, id: \.self) { meel in
-                        HStack {
-                            Text(meel.description)
-                                .font(.largeTitle)
-                                .multilineTextAlignment(.center)
-                        }.onTapGesture {
-                            self.mealDay.vomit(meal: meel)
+            GeometryReader { geo in
+                ScrollView {
+                    Text(self.mealDay.description).font(.headline)
+                    VStack {
+                        ForEach(self.mealDay.meals, id: \.self) { meel in
+                            HStack {
+                                Text(meel.description)
+                                    .font(.largeTitle)
+                                    .multilineTextAlignment(.center)
+                            }.onTapGesture {
+                                self.mealDay.vomit(meal: meel)
+                            }
                         }
-                    }
+                    }.frame(width: geo.size.width,
+                    alignment: .top)
                 }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            }
             Divider()
             Button(action: {
                 self.mealDay.eat(nom: Nom())
