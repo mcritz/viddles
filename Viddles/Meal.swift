@@ -1,16 +1,18 @@
 import Foundation
+import CoreData
 import Combine
 
-struct Nom: Codable {
+class Nom: NSManagedObject {
     let createdAt = Date()
     var nomValue: Int = 150
 }
 
-struct Meal: Identifiable, Hashable, Equatable, Codable, CustomStringConvertible {
-    let type: MealType
+class Meal: NSManagedObject, Identifiable {
+    let type: MealType = .snack
+    let createdAt = Date()
     var id = UUID()
-    var noms = [Nom]()
-    var description: String {
+    let noms = mutableSetValue(forKey: "noms")
+    override var description: String {
         get {
             let allNomNoms = noms.reduce(into: "") { (res, _) in
                 res.append("🍱")
@@ -19,25 +21,20 @@ struct Meal: Identifiable, Hashable, Equatable, Codable, CustomStringConvertible
         }
     }
     
-    static func == (lhs: Meal, rhs: Meal) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    mutating func vomit() {
+    func vomit() {
         guard noms.count > 0 else { return }
-        noms.removeLast()
+        if let lastNom = noms.allObjects.last as? Nom {
+            self.managedObjectContext?.delete(lastNom)
+            try? self.managedObjectContext?.save()
+            if noms.allObjects.count == 0 {
+                self.managedObjectContext?.delete(self)
+            }
+        }
     }
     
-    mutating func eat(omNom: Nom) {
-        noms.append(omNom)
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id.hashValue)
-    }
-    
-    init(_ type: MealType) {
-        self.type = type
+    func eat(omNom: Nom) {
+        omNom.setValue(self, forKey: "meal")
+        try? self.managedObjectContext?.save()
     }
 }
 
@@ -50,23 +47,29 @@ enum MealType: String, Codable, CustomStringConvertible {
     }
 }
 
-class MealDay: Identifiable, ObservableObject, CustomStringConvertible {
-    var description: String {
+class MealDay: NSManagedObject, Identifiable {
+    
+    static func allMealDayFetchRequest() -> NSFetchRequest<MealDay> {
+        let request: NSFetchRequest<MealDay> = NSFetchRequest<MealDay>(entityName: "MealDay")
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        return request
+    }
+
+    override var description: String {
         get {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
-            return formatter.string(from: created)
+            return formatter.string(from: createdAt)
         }
     }
-    @Published var meals = [Meal]()
-    let created: Date = Date()
+    let createdAt: Date = Date()
+    @Published var meals = mutableSetValue(forKey: "meals")
+    
     
     func vomit(meal: Meal) {
-        guard let indx = self.meals.firstIndex(of: meal) else { return }
-        var thisMeal = self.meals.remove(at: indx)
-        thisMeal.vomit()
-        if thisMeal.noms.count < 1 { return }
-        self.meals.insert(thisMeal, at: indx)
+        guard meals.contains(meal) else { return }
+        let thisMeal = self.meals.allObjects.last as? Meal
+        thisMeal?.vomit()
     }
     
     func eat(nom: Nom) {
@@ -85,21 +88,19 @@ class MealDay: Identifiable, ObservableObject, CustomStringConvertible {
             type = .snack
         }
         var didEat = false
-        var existingMeal: Meal
-        for meal in self.meals {
-            if meal.type == type,
-                let idx = self.meals.firstIndex(of: meal) {
-                    existingMeal = meal
-                    self.meals.remove(at: idx)
-                    existingMeal.eat(omNom: Nom())
-                    self.meals.insert(existingMeal, at: idx)
-                    didEat = true
-            }
+        guard let allMeals = self.meals.allObjects as? [Meal],
+            let context = self.managedObjectContext else {
+                return
+        }
+        let matchedMeals = allMeals.filter{ $0.type == type }
+        matchedMeals.forEach { (meal) in
+            meal.eat(omNom: Nom(context: context))
+            didEat = true
         }
         if !didEat {
-            var newMeal = Meal(type)
+            let newMeal = Meal(context: context)
             newMeal.eat(omNom: Nom())
-            self.meals.append(newMeal)
+            newMeal.setValue(self, forKey: "mealDay")
         }
     }
 }

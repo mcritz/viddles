@@ -10,21 +10,27 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @ObservedObject var mealDay = MealDay()
-    
+    @FetchRequest(fetchRequest: MealDay.allMealDayFetchRequest()) var mealDays: FetchedResults<MealDay>
+    var body: some View {
+        List(self.mealDays) { mealDay in
+            Text("Day: \(mealDay.description)")
+            
+        }
+    }
+   /*
     var body: some View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
                     Text(self.mealDay.description).font(.headline)
                     VStack {
-                        ForEach(self.mealDay.meals, id: \.self) { meel in
+                        ForEach(self.mealDay.meals.allObjects as! [Meal], id: \.self) { meel in
                             HStack {
                                 Text(meel.description)
                                     .font(.largeTitle)
                                     .multilineTextAlignment(.center)
                             }.onTapGesture {
-                                self.mealDay.vomit(meal: meel)
+//                                self.mealDay.vomit(meal: meel)
                             }
                         }
                     }.frame(width: geo.size.width,
@@ -33,7 +39,7 @@ struct ContentView: View {
             }
             Divider()
             Button(action: {
-                self.mealDay.eat(nom: Nom())
+                print("hi")
             }) {
                 Text("Nom")
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -45,6 +51,7 @@ struct ContentView: View {
             }
         }
     }
+ */
 }
 
 struct ContentView_Previews: PreviewProvider {
