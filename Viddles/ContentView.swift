@@ -11,21 +11,21 @@ import Combine
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(fetchRequest: Nom.getAllNoms()) var noms: FetchedResults<Nom>
+    @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     
     var body: some View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
-                    Text("mealDay").font(.headline)
+                    Text("Days").font(.headline)
                     VStack {
-                        ForEach(self.noms, id: \.self) { nom in
+                        ForEach(self.mealDays, id: \.self) { day in
                             HStack {
-                                Text("meel.description")
+                                Text("day.description \(day.description)")
                                     .font(.largeTitle)
                                     .multilineTextAlignment(.center)
                             }.onTapGesture {
-//                                self.mealDay.vomit(meal: meel)
+                                day.eat()
                                 print("tap")
                             }
                         }
@@ -35,10 +35,7 @@ struct ContentView: View {
             }
             Divider()
             Button(action: {
-//                self.mealDay.eat(nom: Nom())
-                let newNom = Nom(context: self.context)
-                self.context.insert(newNom)
-                try? self.context.save()
+                print("hi")
             }) {
                 Text("Nom")
                     .frame(minWidth: 0, maxWidth: .infinity)

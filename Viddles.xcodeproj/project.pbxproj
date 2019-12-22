@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */; };
-		0F99A1EE23A6FB81005676FE /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F99A1ED23A6FB81005676FE /* Meal.swift */; };
+		0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0F23AEF87000CB9F70 /* Meal.swift */; };
+		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
+		0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1323AFD39E00CB9F70 /* MealType.swift */; };
+		0F99A1EE23A6FB81005676FE /* MealBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F99A1ED23A6FB81005676FE /* MealBase.swift */; };
 		0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53971238F7FBC0064B42B /* AppDelegate.swift */; };
 		0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53973238F7FBC0064B42B /* SceneDelegate.swift */; };
 		0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */; };
@@ -39,7 +42,10 @@
 
 /* Begin PBXFileReference section */
 		0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nom.swift; sourceTree = "<group>"; };
-		0F99A1ED23A6FB81005676FE /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		0F5CCF0F23AEF87000CB9F70 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDay.swift; sourceTree = "<group>"; };
+		0F5CCF1323AFD39E00CB9F70 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		0F99A1ED23A6FB81005676FE /* MealBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealBase.swift; sourceTree = "<group>"; };
 		0FF5396E238F7FBC0064B42B /* Viddles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viddles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF53973238F7FBC0064B42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +91,9 @@
 		0F5CCF0C23AEF3EF00CB9F70 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0F5CCF0F23AEF87000CB9F70 /* Meal.swift */,
 				0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */,
+				0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -122,7 +130,8 @@
 				0FF53982238F7FC00064B42B /* Info.plist */,
 				0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */,
 				0FF5397C238F7FC00064B42B /* Preview Content */,
-				0F99A1ED23A6FB81005676FE /* Meal.swift */,
+				0F99A1ED23A6FB81005676FE /* MealBase.swift */,
+				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
 			);
 			path = Viddles;
 			sourceTree = "<group>";
@@ -284,10 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F99A1EE23A6FB81005676FE /* Meal.swift in Sources */,
+				0F99A1EE23A6FB81005676FE /* MealBase.swift in Sources */,
+				0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */,
 				0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */,
+				0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */,
 				0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */,
 				0FF53979238F7FBC0064B42B /* ContentView.swift in Sources */,
+				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
 				0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */,
 				0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */,
 			);

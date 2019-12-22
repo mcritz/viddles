@@ -12,10 +12,20 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let mealDayFetchRequest = MealDay.getAllMealDays()
+        var dayCount: Int?
+        do {
+            let results = try persistentContainer.viewContext.fetch(mealDayFetchRequest)
+            dayCount = results.count
+        } catch {
+            dayCount = 0
+        }
+        if dayCount == nil || (dayCount ?? 0) < 1 {
+            MealDay.newDay(context: persistentContainer.viewContext)
+        }
+        
         return true
     }
 
@@ -35,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+    var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the

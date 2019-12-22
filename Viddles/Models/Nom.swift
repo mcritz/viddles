@@ -8,9 +8,11 @@
 
 import CoreData
 
-public class Nom: NSManagedObject, Identifiable {
+public class Nom: NSManagedObject {
+    @NSManaged public var id: UUID?
     @NSManaged public var createdAt: Date?
     @NSManaged public var value: Int
+    @NSManaged public var meal: NSSet?
 }
 
 extension Nom {
@@ -19,5 +21,13 @@ extension Nom {
         let sorter = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sorter]
         return request
+    }
+    
+    static func newNom() -> Nom {
+        let newNom = Nom()
+        newNom.setValue(UUID(), forKey: #keyPath(Nom.id))
+        newNom.setValue(Date(), forKey: #keyPath(Nom.createdAt))
+        newNom.setValue(150, forKey: #keyPath(Nom.value))
+        return newNom
     }
 }
