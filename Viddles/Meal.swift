@@ -1,12 +1,10 @@
 import Foundation
 import Combine
 
-struct Nom: Codable {
-    let createdAt = Date()
-    var nomValue: Int = 150
-}
 
-struct Meal: Identifiable, Hashable, Equatable, Codable, CustomStringConvertible {
+
+/*
+struct Meal: Identifiable, Hashable, Equatable, CustomStringConvertible {
     let type: MealType
     var id = UUID()
     var noms = [Nom]()
@@ -40,6 +38,7 @@ struct Meal: Identifiable, Hashable, Equatable, Codable, CustomStringConvertible
         self.type = type
     }
 }
+
 
 enum MealType: String, Codable, CustomStringConvertible {
     case snack, breakfast, lunch, dinner, midnight
@@ -103,3 +102,4 @@ class MealDay: Identifiable, ObservableObject, CustomStringConvertible {
         }
     }
 }
+*/

@@ -10,21 +10,23 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @ObservedObject var mealDay = MealDay()
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(fetchRequest: Nom.getAllNoms()) var noms: FetchedResults<Nom>
     
     var body: some View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
-                    Text(self.mealDay.description).font(.headline)
+                    Text("mealDay").font(.headline)
                     VStack {
-                        ForEach(self.mealDay.meals, id: \.self) { meel in
+                        ForEach(self.noms, id: \.self) { nom in
                             HStack {
-                                Text(meel.description)
+                                Text("meel.description")
                                     .font(.largeTitle)
                                     .multilineTextAlignment(.center)
                             }.onTapGesture {
-                                self.mealDay.vomit(meal: meel)
+//                                self.mealDay.vomit(meal: meel)
+                                print("tap")
                             }
                         }
                     }.frame(width: geo.size.width,
@@ -33,7 +35,10 @@ struct ContentView: View {
             }
             Divider()
             Button(action: {
-                self.mealDay.eat(nom: Nom())
+//                self.mealDay.eat(nom: Nom())
+                let newNom = Nom(context: self.context)
+                self.context.insert(newNom)
+                try? self.context.save()
             }) {
                 Text("Nom")
                     .frame(minWidth: 0, maxWidth: .infinity)
