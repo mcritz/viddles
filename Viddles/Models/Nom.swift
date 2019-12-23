@@ -12,7 +12,7 @@ public class Nom: NSManagedObject {
     @NSManaged public var id: UUID?
     @NSManaged public var createdAt: Date?
     @NSManaged public var value: Int
-    @NSManaged public var meal: NSSet?
+    @NSManaged public var meal: Set<Meal>?
 }
 
 extension Nom {
@@ -23,8 +23,8 @@ extension Nom {
         return request
     }
     
-    static func newNom() -> Nom {
-        let newNom = Nom()
+    static func newNom(context: NSManagedObjectContext) -> Nom {
+        let newNom = Nom(context: context)
         newNom.setValue(UUID(), forKey: #keyPath(Nom.id))
         newNom.setValue(Date(), forKey: #keyPath(Nom.createdAt))
         newNom.setValue(150, forKey: #keyPath(Nom.value))

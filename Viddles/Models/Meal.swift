@@ -12,8 +12,8 @@ public class Meal: NSManagedObject {
     @NSManaged public var id: UUID?
     @NSManaged public var type: String?
     @NSManaged public var createdAt: Date?
-    @NSManaged public var noms: NSSet?
-    @NSManaged public var mealDay: NSSet?
+    @NSManaged public var noms: Set<Nom>?
+    @NSManaged public var mealDay: Set<MealDay>?
 }
 
 extension Meal {

@@ -11,10 +11,13 @@ import CoreData
 public class MealDay: NSManagedObject {
     @NSManaged var id: UUID?
     @NSManaged var createdAt: Date?
-    @NSManaged var meals: NSSet?
+    @NSManaged var meals: Set<Meal>?
     
     override public var description: String {
-        return DateFormatter().string(from: Date())
+        guard let realDate = createdAt else { return "—" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter.string(from: realDate)
     }
 }
 
@@ -48,15 +51,16 @@ extension MealDay {
         guard let context = self.managedObjectContext else { return }
         
         let type = MealType.getCurrent()
-        let currentMeal = meals?.filter{ element -> Bool in
-            guard let meal = element as? Meal else { return false }
+        let currentMeal = meals?.filter{ meal -> Bool in
             return meal.type == type.rawValue
         }
-        if let matchedMeal = currentMeal?.first as? Meal {
-            matchedMeal.addToNoms(Nom.newNom())
+        if let matchedMeal = currentMeal?.first {
+            matchedMeal.addToNoms(Nom.newNom(context: context))
         } else {
-            let newMeal = Meal.new(in: context, with: Nom.newNom())
-            self.addToMeals(newMeal)
+            let newMeal = Meal.new(in: context, with: Nom.newNom(context: context))
+            newMeal.setValue(self, forKey: #keyPath(Meal.mealDay))
+            context.insert(newMeal)
+            try? context.save()
         }
         try? self.managedObjectContext?.save()
     }

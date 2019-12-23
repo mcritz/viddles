@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        
+        // TODO: There’s got to be a better way of doing this
+        // This requires turning off lazy loading for CoreData
         let mealDayFetchRequest = MealDay.getAllMealDays()
         var dayCount: Int?
         do {

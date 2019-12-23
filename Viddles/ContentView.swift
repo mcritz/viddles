@@ -20,8 +20,8 @@ struct ContentView: View {
                     Text("Days").font(.headline)
                     VStack {
                         ForEach(self.mealDays, id: \.self) { day in
-                            HStack {
-                                Text("day.description \(day.description)")
+                            VStack {
+                                Text(day.description)
                                     .font(.largeTitle)
                                     .multilineTextAlignment(.center)
                             }.onTapGesture {
