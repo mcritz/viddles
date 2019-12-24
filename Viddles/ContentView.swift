@@ -16,12 +16,15 @@ extension Set: RandomAccessCollection {
 }
 
 struct NomsView: View {
-    var meel: Meal
+    @ObservedObject var meel: Meal
     
     var body: some View {
-        HStack {
-            ForEach(meel.noms, id: \.id) { nom in
-                Text("Nom")
+        VStack {
+            Text(meel.description)
+            HStack {
+                ForEach(meel.noms, id: \.id) { nom in
+                    Text("🍱")
+                }
             }
         }
     }
@@ -29,13 +32,12 @@ struct NomsView: View {
 
 
 struct MealDayDetailView: View {
-    var mealDay: MealDay
+    @ObservedObject var mealDay: MealDay
     
     var body: some View {
         VStack {
             Text("Meals")
             ForEach(mealDay.meals, id: \.self) { meal in
-//                Text((meal.type ?? "Meal"))
                 NomsView(meel: meal)
             }
         }

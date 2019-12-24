@@ -14,6 +14,12 @@ public class Meal: NSManagedObject {
     @NSManaged public var createdAt: Date?
     @NSManaged public var noms: Set<Nom>
     @NSManaged public var mealDay: Set<MealDay>?
+    
+    override public var description: String {
+        get {
+            return self.type?.capitalized(with: Locale.current) ?? "Noms"
+        }
+    }
 }
 
 extension Meal {
