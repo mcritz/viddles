@@ -11,7 +11,7 @@ import CoreData
 public class MealDay: NSManagedObject {
     @NSManaged var id: UUID?
     @NSManaged var createdAt: Date?
-    @NSManaged var meals: Set<Meal>?
+    @NSManaged var meals: Set<Meal>
     
     override public var description: String {
         guard let realDate = createdAt else { return "—" }
@@ -51,10 +51,10 @@ extension MealDay {
         guard let context = self.managedObjectContext else { return }
         
         let type = MealType.getCurrent()
-        let currentMeal = meals?.filter{ meal -> Bool in
+        let currentMeal = meals.filter{ meal -> Bool in
             return meal.type == type.rawValue
         }
-        if let matchedMeal = currentMeal?.first {
+        if let matchedMeal = currentMeal.first {
             matchedMeal.addToNoms(Nom.newNom(context: context))
         } else {
             let newMeal = Meal.new(in: context, with: Nom.newNom(context: context))

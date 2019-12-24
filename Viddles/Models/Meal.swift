@@ -9,10 +9,10 @@
 import CoreData
 
 public class Meal: NSManagedObject {
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var type: String?
     @NSManaged public var createdAt: Date?
-    @NSManaged public var noms: Set<Nom>?
+    @NSManaged public var noms: Set<Nom>
     @NSManaged public var mealDay: Set<MealDay>?
 }
 
