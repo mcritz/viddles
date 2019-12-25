@@ -48,6 +48,27 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     
+    func handleNomButton() {
+        let oldDay = mealDays.reduce(mealDays.last) { (prev, this) -> MealDay? in
+            guard let thisDate = this.createdAt else { return nil }
+            let difference = Calendar(identifier: .iso8601)
+                           .dateComponents([Calendar.Component.day],
+                                           from: Date(),
+                                           to: thisDate)
+            if difference.day == 0 {
+                return this
+            }
+            return nil
+        }
+        if let realOldDay = oldDay {
+            realOldDay.eat()
+            return
+        }
+        let newMealDay = MealDay.newDay(context: context)
+        newMealDay.eat()
+        try? context.save()
+    }
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
@@ -71,7 +92,7 @@ struct ContentView: View {
             }
             Divider()
             Button(action: {
-                print("hi")
+                self.handleNomButton()
             }) {
                 Text("Nom")
                     .frame(minWidth: 0, maxWidth: .infinity)

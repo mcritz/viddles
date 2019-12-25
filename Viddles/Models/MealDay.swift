@@ -37,12 +37,13 @@ extension MealDay {
 }
 
 extension MealDay {
-    static func newDay(context: NSManagedObjectContext) {
+    static func newDay(context: NSManagedObjectContext) -> MealDay {
         let newDay = MealDay(context: context)
         newDay.setValue(UUID(), forKey: #keyPath(MealDay.id))
         newDay.setValue(Date(), forKey: #keyPath(MealDay.createdAt))
         context.insert(newDay)
         try? context.save()
+        return newDay
     }
     
     
@@ -60,8 +61,7 @@ extension MealDay {
             let newMeal = Meal.new(in: context, with: Nom.newNom(context: context))
             newMeal.setValue(self, forKey: #keyPath(Meal.mealDay))
             context.insert(newMeal)
-            try? context.save()
         }
-        try? self.managedObjectContext?.save()
+        try? context.save()
     }
 }
