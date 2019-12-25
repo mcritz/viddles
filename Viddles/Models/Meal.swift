@@ -47,4 +47,13 @@ extension Meal {
         }
         return newMeal
     }
+    
+    public func vomit() {
+        guard let realNom = noms.randomElement() else { return }
+        managedObjectContext?.delete(realNom)
+        if noms.count < 1 {
+            managedObjectContext?.delete(self)
+        }
+        try? managedObjectContext?.save()
+    }
 }

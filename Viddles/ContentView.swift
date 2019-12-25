@@ -23,9 +23,11 @@ struct NomsView: View {
             Text(meel.description)
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
-                    Text("🍱")
+                    Text(["🍱", "🍎", "🍔", "🥩", "🍕", "🥗", "🌯", "🍜", "🍩"].randomElement()!)
                 }
             }
+        }.onTapGesture {
+            self.meel.vomit()
         }
     }
 }
@@ -81,9 +83,6 @@ struct ContentView: View {
                                     .font(.largeTitle)
                                     .multilineTextAlignment(.center)
                                 MealDayDetailView(mealDay: day)
-                            }.onTapGesture {
-                                day.eat()
-                                print("tap")
                             }
                         }
                     }.frame(width: geo.size.width,
