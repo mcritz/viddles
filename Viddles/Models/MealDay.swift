@@ -37,6 +37,27 @@ extension MealDay {
 }
 
 extension MealDay {
+    
+    static func checkNewDay(context: NSManagedObjectContext) -> MealDay {
+        let todaysMealDayFetchRequest = NSFetchRequest<MealDay>(entityName: "MealDay")
+        
+        let todayComponents = Calendar(identifier: .iso8601).dateComponents([.day, .month, .year], from: Date())
+        let thisDay = Calendar(identifier: .iso8601).date(from: todayComponents)!
+        
+        let todaysMealDayPredicates = NSPredicate(format: "createdAt > %@", argumentArray: [thisDay])
+        
+        todaysMealDayFetchRequest.predicate = todaysMealDayPredicates
+        do {
+            let maybeMatchedDays = try context.fetch(todaysMealDayFetchRequest)
+            if let matchedDay = maybeMatchedDays.first {
+                return matchedDay
+            }
+        } catch {
+            return MealDay.newDay(context: context)
+        }
+        return MealDay.newDay(context: context)
+    }
+    
     static func newDay(context: NSManagedObjectContext) -> MealDay {
         let newDay = MealDay(context: context)
         newDay.setValue(UUID(), forKey: #keyPath(MealDay.id))
@@ -47,19 +68,19 @@ extension MealDay {
     }
     
     
-    public func eat() {
+    static func eat(_ context: NSManagedObjectContext) {
         
-        guard let context = self.managedObjectContext else { return }
+        let mealDay = MealDay.checkNewDay(context: context)
         
         let type = MealType.getCurrent()
-        let currentMeal = meals.filter{ meal -> Bool in
+        let currentMeal = mealDay.meals.filter{ meal -> Bool in
             return meal.type == type.rawValue
         }
         if let matchedMeal = currentMeal.first {
             matchedMeal.addToNoms(Nom.newNom(context: context))
         } else {
             let newMeal = Meal.new(in: context, with: Nom.newNom(context: context))
-            newMeal.setValue(self, forKey: #keyPath(Meal.mealDay))
+            newMeal.setValue(mealDay, forKey: #keyPath(Meal.mealDay))
             context.insert(newMeal)
         }
         try? context.save()

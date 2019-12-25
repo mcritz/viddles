@@ -24,6 +24,7 @@ struct NomsView: View {
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
                     Text(["🍱", "🍎", "🍔", "🥩", "🍕", "🥗", "🌯", "🍜", "🍩"].randomElement()!)
+                        .font(.largeTitle)
                 }
             }
         }.onTapGesture {
@@ -38,7 +39,6 @@ struct MealDayDetailView: View {
     
     var body: some View {
         VStack {
-            Text("Meals")
             ForEach(mealDay.meals, id: \.self) { meal in
                 NomsView(meel: meal)
             }
@@ -51,36 +51,19 @@ struct ContentView: View {
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     
     func handleNomButton() {
-        let oldDay = mealDays.reduce(mealDays.last) { (prev, this) -> MealDay? in
-            guard let thisDate = this.createdAt else { return nil }
-            let difference = Calendar(identifier: .iso8601)
-                           .dateComponents([Calendar.Component.day],
-                                           from: Date(),
-                                           to: thisDate)
-            if difference.day == 0 {
-                return this
-            }
-            return nil
-        }
-        if let realOldDay = oldDay {
-            realOldDay.eat()
-            return
-        }
-        let newMealDay = MealDay.newDay(context: context)
-        newMealDay.eat()
-        try? context.save()
+        MealDay.eat(self.context)
     }
     
     var body: some View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
-                    Text("Days").font(.headline)
+                    Text("Noms").font(.headline)
                     VStack {
                         ForEach(self.mealDays, id: \.id) { day in
                             VStack {
                                 Text(day.description)
-                                    .font(.largeTitle)
+                                    .font(.subheadline)
                                     .multilineTextAlignment(.center)
                                 MealDayDetailView(mealDay: day)
                             }

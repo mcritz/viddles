@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dayCount = 0
         }
         if dayCount == nil || (dayCount ?? 0) < 1 {
-            MealDay.newDay(context: persistentContainer.viewContext)
+            _ = MealDay.newDay(context: persistentContainer.viewContext)
         }
         
         return true
@@ -72,6 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
         return container
     }()
 

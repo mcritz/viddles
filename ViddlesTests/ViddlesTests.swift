@@ -5,9 +5,9 @@
 //  Created by Michael Critz on 11/27/19.
 //  Copyright © 2019 pixel.science. All rights reserved.
 //
-
+    
 import XCTest
-@testable import Viddles
+@testable import Noms
 
 class ViddlesTests: XCTestCase {
 

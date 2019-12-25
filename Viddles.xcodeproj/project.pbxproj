@@ -11,6 +11,7 @@
 		0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0F23AEF87000CB9F70 /* Meal.swift */; };
 		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
 		0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1323AFD39E00CB9F70 /* MealType.swift */; };
+		0F5CCF1923B301EF00CB9F70 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */; };
 		0F99A1EE23A6FB81005676FE /* MealBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F99A1ED23A6FB81005676FE /* MealBase.swift */; };
 		0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53971238F7FBC0064B42B /* AppDelegate.swift */; };
 		0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53973238F7FBC0064B42B /* SceneDelegate.swift */; };
@@ -45,6 +46,8 @@
 		0F5CCF0F23AEF87000CB9F70 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDay.swift; sourceTree = "<group>"; };
 		0F5CCF1323AFD39E00CB9F70 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		0F5CCF1623B301E000CB9F70 /* Noms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noms.entitlements; sourceTree = "<group>"; };
+		0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0F99A1ED23A6FB81005676FE /* MealBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealBase.swift; sourceTree = "<group>"; };
 		0FF5396E238F7FBC0064B42B /* Noms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F5CCF1923B301EF00CB9F70 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,14 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
+		0F5CCF1723B301EF00CB9F70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0FF53965238F7FBB0064B42B = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 				0FF5398A238F7FC10064B42B /* ViddlesTests */,
 				0FF53995238F7FC10064B42B /* ViddlesUITests */,
 				0FF5396F238F7FBC0064B42B /* Products */,
+				0F5CCF1723B301EF00CB9F70 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +142,7 @@
 		0FF53970238F7FBC0064B42B /* Viddles */ = {
 			isa = PBXGroup;
 			children = (
+				0F5CCF1623B301E000CB9F70 /* Noms.entitlements */,
 				0F5CCF0C23AEF3EF00CB9F70 /* Models */,
 				0FF53971238F7FBC0064B42B /* AppDelegate.swift */,
 				0FF53973238F7FBC0064B42B /* SceneDelegate.swift */,
@@ -474,6 +488,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Viddles/Noms.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
 				DEVELOPMENT_TEAM = UB37VMGP6E;
@@ -483,7 +498,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.Viddles;
+				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
 				PRODUCT_NAME = Noms;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -494,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Viddles/Noms.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
 				DEVELOPMENT_TEAM = UB37VMGP6E;
@@ -503,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.Viddles;
+				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
 				PRODUCT_NAME = Noms;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

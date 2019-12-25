@@ -17,7 +17,11 @@ public class Meal: NSManagedObject {
     
     override public var description: String {
         get {
-            return self.type?.capitalized(with: Locale.current) ?? "Noms"
+            let mealName = self.type?.capitalized(with: Locale.current) ?? "Noms"
+            guard let createdAt = createdAt else { return mealName }
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            return mealName + " @ " + formatter.string(from: createdAt)
         }
     }
 }
