@@ -19,8 +19,9 @@ struct NomsView: View {
     @ObservedObject var meel: Meal
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 20) {
             Text(meel.description)
+                .font(.subheadline)
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
                     Text(["🍱", "🍎", "🍔", "🥩", "🍕", "🥗", "🌯", "🍜", "🍩"].randomElement()!)
@@ -38,9 +39,11 @@ struct MealDayDetailView: View {
     @ObservedObject var mealDay: MealDay
     
     var body: some View {
-        VStack {
+        HStack {
             ForEach(mealDay.meals, id: \.self) { meal in
-                NomsView(meel: meal)
+                HStack(alignment: .top, spacing: 30) {
+                    NomsView(meel: meal)
+                }.padding()
             }
         }
     }
@@ -58,15 +61,17 @@ struct ContentView: View {
         VStack {
             GeometryReader { geo in
                 ScrollView {
-                    Text("Noms").font(.headline)
+                    Text("Noms").font(.largeTitle)
+                    Spacer()
                     VStack {
                         ForEach(self.mealDays, id: \.id) { day in
                             VStack {
                                 Text(day.description)
-                                    .font(.subheadline)
+                                    .font(.headline)
                                     .multilineTextAlignment(.center)
                                 MealDayDetailView(mealDay: day)
-                            }
+                                Divider()
+                            }.padding()
                         }
                     }.frame(width: geo.size.width,
                     alignment: .top)

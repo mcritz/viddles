@@ -21,14 +21,17 @@ public class Meal: NSManagedObject {
             guard let createdAt = createdAt else { return mealName }
             let formatter = DateFormatter()
             formatter.timeStyle = .short
-            return mealName + " @ " + formatter.string(from: createdAt)
+            return mealName + " " + formatter.string(from: createdAt)
         }
     }
 }
 
 extension Meal {
     static func getAllMeals() -> NSFetchRequest<Meal> {
-        return Meal.fetchRequest() as! NSFetchRequest<Meal>
+        let request = Meal.fetchRequest() as! NSFetchRequest<Meal>
+        let sorter = NSSortDescriptor(key: #keyPath(Meal.createdAt), ascending: false)
+        request.sortDescriptors = [sorter]
+        return request
     }
 }
 

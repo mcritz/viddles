@@ -16,7 +16,7 @@ public class MealDay: NSManagedObject {
     override public var description: String {
         guard let realDate = createdAt else { return "—" }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .full
         return dateFormatter.string(from: realDate)
     }
 }
