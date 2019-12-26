@@ -49,7 +49,7 @@ struct MealDayDetailView: View {
                     NomsView(meel: meal)
                 }.padding()
             }
-        }.background(Color.white)
+        }
     }
 }
 
@@ -63,7 +63,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color(hue: (42/360), saturation: 0.2, brightness: 0.99)
+            Color("PrimayBackground")
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Text("Noms")
@@ -84,25 +84,26 @@ struct ContentView: View {
                                             .multilineTextAlignment(.center)
                                         MealDayDetailView(mealDay: day)
                                     }.padding()
-                                    .background(Color.white)
+                                    .background(Color(.systemBackground))
                                     .cornerRadius(20)
                                     .frame(width: (geo.size.width - 40))
                                     
                                     Spacer()
                                 }
                             }
-                        }   .frame(width: geo.size.width, alignment: .top)
+                        }
+                        .frame(width: geo.size.width, alignment: .top)
                     }
                 }
-                Divider()
                 Button(action: {
                     self.handleNomButton()
                 }) {
                     Text("Nom")
+                        .font(.headline)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
-                        .foregroundColor(.white)
-                        .background(Color.green)
+                        .foregroundColor(Color(.label))
+                        .background(Color(.systemGreen))
                         .cornerRadius(40)
                         .padding(.horizontal, 20.0)
                 }
