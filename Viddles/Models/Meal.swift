@@ -54,7 +54,15 @@ extension Meal {
         }
         return newMeal
     }
-    
+    public func eat() {
+        guard let context = self.managedObjectContext else { return }
+        let newNom = Nom(context: context)
+        newNom.setValue(150, forKey: #keyPath(Nom.value))
+        newNom.setValue(self, forKey: #keyPath(Nom.meal))
+        newNom.setValue(Date(), forKey: #keyPath(Nom.createdAt))
+        self.addToNoms(newNom)
+        try? context.save()
+    }
     public func vomit() {
         guard let realNom = noms.randomElement() else { return }
         managedObjectContext?.delete(realNom)
