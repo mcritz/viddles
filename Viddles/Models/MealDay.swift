@@ -97,3 +97,15 @@ extension MealDay {
         try? context.save()
     }
 }
+
+extension MealDay {
+    public func delete(meal: Meal) {
+        guard let context = managedObjectContext else { return }
+        context.delete(meal)
+        try? context.save()
+        if meals.count < 1 {
+            context.delete(self)
+            try? context.save()
+        }
+    }
+}

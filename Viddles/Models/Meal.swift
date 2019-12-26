@@ -66,9 +66,11 @@ extension Meal {
     public func vomit() {
         guard let realNom = noms.randomElement() else { return }
         managedObjectContext?.delete(realNom)
-        if noms.count < 1 {
-            managedObjectContext?.delete(self)
-        }
         try? managedObjectContext?.save()
+
+        if noms.count < 1 {
+            let day = self.value(forKeyPath: #keyPath(Meal.mealDay)) as? MealDay
+            day?.delete(meal: self)
+        }
     }
 }
