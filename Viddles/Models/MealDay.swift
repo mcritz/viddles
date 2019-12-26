@@ -29,6 +29,17 @@ extension MealDay {
         return request
     }
     
+    public var orderedMeals: [Meal] {
+        get {
+            return meals.sorted { (akok, esdf) -> Bool in
+                if let comparison = akok.createdAt?.distance(to: esdf.createdAt!) {
+                    return comparison > 0
+                }
+                return false
+            }
+        }
+    }
+    
     @objc(addToMealsObject:)
     @NSManaged public func addToMeals(_ value: Meal)
     

@@ -18,7 +18,7 @@ public class Nom: NSManagedObject {
 extension Nom {
     static func getAllNoms() -> NSFetchRequest<Nom> {
         let request = Nom.fetchRequest() as! NSFetchRequest<Nom>
-        let sorter = NSSortDescriptor(key: "createdAt", ascending: false)
+        let sorter = NSSortDescriptor(key: #keyPath(Nom.createdAt), ascending: false)
         request.sortDescriptors = [sorter]
         return request
     }

@@ -25,6 +25,7 @@ struct NomsView: View {
                 .onTapGesture {
                     self.meel.eat()
                 }
+            Spacer()
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
                     Text(["🍱", "🍎", "🍔", "🥩", "🍕", "🥗", "🌯", "🍜", "🍩"].randomElement()!)
@@ -43,7 +44,7 @@ struct MealDayDetailView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            ForEach(mealDay.meals, id: \.self) { meal in
+            ForEach(mealDay.orderedMeals, id: \.self) { meal in
                 HStack(alignment: .top, spacing: 30) {
                     NomsView(meel: meal)
                 }.padding()
