@@ -61,54 +61,43 @@ struct ContentView: View {
         MealDay.eat(self.context)
     }
     
+    fileprivate func BigButton() -> some View {
+        return Button(action: {
+            self.handleNomButton()
+        }) {
+            Text("Nom")
+                .font(.headline)
+                .frame(minWidth: 80, maxWidth: .infinity)
+                .padding()
+                .foregroundColor(Color(.label))
+                .background(Color(.systemGreen))
+                .cornerRadius(40)
+                .padding(.horizontal, 20.0)
+        }.frame(minWidth: 150, idealWidth: 320, maxWidth: .infinity, minHeight: 20, idealHeight: 20, maxHeight: 40, alignment: .top)
+    }
+    
     var body: some View {
         ZStack {
             Color("PrimayBackground")
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("Noms")
-                    .font(.largeTitle)
-                    .foregroundColor(Color(hue: 0,
-                                           saturation: 0.69,
-                                           brightness: 0.79))
-                Spacer()
-
-                GeometryReader { geo in
-                    ScrollView {
-                        VStack {
-                            ForEach(self.mealDays, id: \.id) { day in
-                                VStack {
-                                    VStack {
-                                        Text(day.description)
-                                            .font(.headline)
-                                            .multilineTextAlignment(.center)
-                                        MealDayDetailView(mealDay: day)
-                                    }.padding()
-                                    .background(Color(.systemBackground))
-                                    .cornerRadius(20)
-                                    .frame(width: (geo.size.width - 40))
-                                    
-                                    Spacer()
-                                }
-                            }
+                NavigationView {
+                    List {
+                        ForEach(self.mealDays, id: \.id) { day in
+                            VStack {
+                                Text(day.description)
+                                    .font(.headline)
+                                    .multilineTextAlignment(.center)
+                                MealDayDetailView(mealDay: day)
+                            }.padding()
+                            .background(Color(.systemBackground))
+                            .cornerRadius(20)
                         }
-                        .frame(width: geo.size.width, alignment: .top)
-                    }
+                    }.navigationBarTitle("Noms")
                 }
-                Button(action: {
-                    self.handleNomButton()
-                }) {
-                    Text("Nom")
-                        .font(.headline)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding()
-                        .foregroundColor(Color(.label))
-                        .background(Color(.systemGreen))
-                        .cornerRadius(40)
-                        .padding(.horizontal, 20.0)
-                }
+                BigButton()
             }
-            }
+        }
     }
 }
 
