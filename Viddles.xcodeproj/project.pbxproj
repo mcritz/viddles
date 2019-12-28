@@ -20,7 +20,7 @@
 		0FF5397B238F7FC00064B42B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF5397A238F7FC00064B42B /* Assets.xcassets */; };
 		0FF5397E238F7FC00064B42B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF5397D238F7FC00064B42B /* Preview Assets.xcassets */; };
 		0FF53981238F7FC00064B42B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FF5397F238F7FC00064B42B /* LaunchScreen.storyboard */; };
-		0FF5398C238F7FC10064B42B /* ViddlesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5398B238F7FC10064B42B /* ViddlesTests.swift */; };
+		0FF5398C238F7FC10064B42B /* NomsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5398B238F7FC10064B42B /* NomsTests.swift */; };
 		0FF53997238F7FC10064B42B /* ViddlesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53996238F7FC10064B42B /* ViddlesUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		0FF53980238F7FC00064B42B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0FF53982238F7FC00064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FF53987238F7FC10064B42B /* ViddlesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViddlesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0FF5398B238F7FC10064B42B /* ViddlesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViddlesTests.swift; sourceTree = "<group>"; };
+		0FF5398B238F7FC10064B42B /* NomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsTests.swift; sourceTree = "<group>"; };
 		0FF5398D238F7FC10064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FF53992238F7FC10064B42B /* ViddlesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViddlesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53996238F7FC10064B42B /* ViddlesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViddlesUITests.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		0FF5398A238F7FC10064B42B /* ViddlesTests */ = {
 			isa = PBXGroup;
 			children = (
-				0FF5398B238F7FC10064B42B /* ViddlesTests.swift */,
+				0FF5398B238F7FC10064B42B /* NomsTests.swift */,
 				0FF5398D238F7FC10064B42B /* Info.plist */,
 			);
 			path = ViddlesTests;
@@ -331,7 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FF5398C238F7FC10064B42B /* ViddlesTests.swift in Sources */,
+				0FF5398C238F7FC10064B42B /* NomsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +544,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Viddles.app/Viddles";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Noms.app/Noms";
 			};
 			name = Debug;
 		};
@@ -566,7 +566,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Viddles.app/Viddles";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Noms.app/Noms";
 			};
 			name = Release;
 		};

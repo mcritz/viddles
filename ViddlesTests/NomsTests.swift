@@ -9,7 +9,7 @@
 import XCTest
 @testable import Noms
 
-class ViddlesTests: XCTestCase {
+class NomsTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
