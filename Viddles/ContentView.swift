@@ -57,6 +57,12 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
+        UITableViewCell.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
+    }
+    
     func handleNomButton() {
         MealDay.eat(self.context)
     }
@@ -73,27 +79,32 @@ struct ContentView: View {
                 .background(Color(.systemGreen))
                 .cornerRadius(40)
                 .padding(.horizontal, 20.0)
-        }.frame(minWidth: 150, idealWidth: 320, maxWidth: .infinity, minHeight: 20, idealHeight: 20, maxHeight: 40, alignment: .top)
+        }.frame(minWidth: 150,
+                idealWidth: 320,
+                maxWidth: .infinity,
+                minHeight: 20,
+                idealHeight: 20,
+                maxHeight: 40,
+                alignment: .top)
     }
     
     var body: some View {
         ZStack {
-            Color("PrimayBackground")
+            Color("PrimaryBackground")
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 NavigationView {
-                    List {
-                        ForEach(self.mealDays, id: \.id) { day in
-                            VStack {
-                                Text(day.description)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                                MealDayDetailView(mealDay: day)
-                            }.padding()
-                            .background(Color(.systemBackground))
-                            .cornerRadius(20)
-                        }
-                    }.navigationBarTitle("Noms")
+                    List(self.mealDays, id:\.self) { day in
+                        VStack {
+                            Text(day.description)
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                            MealDayDetailView(mealDay: day)
+                        }.padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(20)
+                    }
+                    .navigationBarTitle("Noms")
                 }
                 BigButton()
             }
