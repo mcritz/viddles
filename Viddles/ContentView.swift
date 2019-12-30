@@ -28,8 +28,11 @@ struct NomsView: View {
             Spacer()
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
-                    Text(["🍱", "🍎", "🍔", "🥩", "🍕", "🥗", "🌯", "🍜", "🍩"].randomElement()!)
-                        .font(.largeTitle)
+                    [
+                        Image("RoundFace"),
+                        Image("BlueFace"),
+                        Image("RedFace")
+                    ].randomElement()
                 }
             }.onTapGesture {
                 self.meel.vomit()
@@ -73,6 +76,7 @@ struct ContentView: View {
         }) {
             Text("Nom")
                 .font(.headline)
+                .bold()
                 .frame(minWidth: 80, maxWidth: .infinity)
                 .padding()
                 .foregroundColor(Color(.label))
