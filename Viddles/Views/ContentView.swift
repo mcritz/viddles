@@ -9,52 +9,6 @@
 import SwiftUI
 import Combine
 
-extension Set: RandomAccessCollection {
-    public func index(before i: Set<Element>.Index) -> Set<Element>.Index {
-        return i
-    }
-}
-
-struct NomsView: View {
-    @ObservedObject var meel: Meal
-    
-    var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 20) {
-            Text(meel.description)
-                .font(.subheadline)
-                .onTapGesture {
-                    self.meel.eat()
-                }
-            Spacer()
-            HStack {
-                ForEach(meel.noms, id: \.id) { nom in
-                    [
-                        Image("RoundFace"),
-                        Image("BlueFace"),
-                        Image("RedFace")
-                    ].randomElement()
-                }
-            }.onTapGesture {
-                self.meel.vomit()
-            }
-        }
-    }
-}
-
-
-struct MealDayDetailView: View {
-    @ObservedObject var mealDay: MealDay
-    
-    var body: some View {
-        VStack(alignment: .center) {
-            ForEach(mealDay.orderedMeals, id: \.self) { meal in
-                HStack(alignment: .top, spacing: 30) {
-                    NomsView(meel: meal)
-                }.padding()
-            }
-        }
-    }
-}
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var context

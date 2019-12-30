@@ -19,8 +19,8 @@
         <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="noms" inverseEntity="Meal"/>
     </entity>
     <elements>
-        <element name="Nom" positionX="-9" positionY="36" width="128" height="28"/>
         <element name="Meal" positionX="-9" positionY="54" width="128" height="28"/>
         <element name="MealDay" positionX="9" positionY="90" width="128" height="88"/>
+        <element name="Nom" positionX="-9" positionY="36" width="128" height="28"/>
     </elements>
 </model>

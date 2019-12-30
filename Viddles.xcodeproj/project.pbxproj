@@ -12,7 +12,9 @@
 		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
 		0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1323AFD39E00CB9F70 /* MealType.swift */; };
 		0F5CCF1923B301EF00CB9F70 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */; };
-		0F99A1EE23A6FB81005676FE /* MealBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F99A1ED23A6FB81005676FE /* MealBase.swift */; };
+		0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */; };
+		0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310ED23BA662D002EE9B3 /* NomsView.swift */; };
+		0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */; };
 		0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53971238F7FBC0064B42B /* AppDelegate.swift */; };
 		0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53973238F7FBC0064B42B /* SceneDelegate.swift */; };
 		0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */; };
@@ -48,7 +50,9 @@
 		0F5CCF1323AFD39E00CB9F70 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		0F5CCF1623B301E000CB9F70 /* Noms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noms.entitlements; sourceTree = "<group>"; };
 		0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		0F99A1ED23A6FB81005676FE /* MealBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealBase.swift; sourceTree = "<group>"; };
+		0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+RandomAccessCollection.swift"; sourceTree = "<group>"; };
+		0F8310ED23BA662D002EE9B3 /* NomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsView.swift; sourceTree = "<group>"; };
+		0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDayDetailView.swift; sourceTree = "<group>"; };
 		0FF5396E238F7FBC0064B42B /* Noms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF53973238F7FBC0064B42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 		0FF53982238F7FC00064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FF53987238F7FC10064B42B /* ViddlesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViddlesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF5398B238F7FC10064B42B /* NomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsTests.swift; sourceTree = "<group>"; };
-		0FF5398D238F7FC10064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FF5398D238F7FC10064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ViddlesTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		0FF53992238F7FC10064B42B /* ViddlesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViddlesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53996238F7FC10064B42B /* ViddlesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViddlesUITests.swift; sourceTree = "<group>"; };
 		0FF53998238F7FC10064B42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		0F5CCF0C23AEF3EF00CB9F70 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */,
 				0F5CCF0F23AEF87000CB9F70 /* Meal.swift */,
 				0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */,
 				0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */,
@@ -115,6 +120,17 @@
 				0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F8310EC23BA6621002EE9B3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FF53978238F7FBC0064B42B /* ContentView.swift */,
+				0F8310ED23BA662D002EE9B3 /* NomsView.swift */,
+				0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */,
+				0FF5397A238F7FC00064B42B /* Assets.xcassets */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0FF53965238F7FBB0064B42B = {
@@ -142,18 +158,17 @@
 		0FF53970238F7FBC0064B42B /* Viddles */ = {
 			isa = PBXGroup;
 			children = (
+				0FF5398D238F7FC10064B42B /* Info.plist */,
 				0F5CCF1623B301E000CB9F70 /* Noms.entitlements */,
-				0F5CCF0C23AEF3EF00CB9F70 /* Models */,
 				0FF53971238F7FBC0064B42B /* AppDelegate.swift */,
+				0F5CCF0C23AEF3EF00CB9F70 /* Models */,
+				0F8310EC23BA6621002EE9B3 /* Views */,
 				0FF53973238F7FBC0064B42B /* SceneDelegate.swift */,
-				0FF53978238F7FBC0064B42B /* ContentView.swift */,
-				0FF5397A238F7FC00064B42B /* Assets.xcassets */,
 				0FF5397F238F7FC00064B42B /* LaunchScreen.storyboard */,
 				0FF53982238F7FC00064B42B /* Info.plist */,
-				0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */,
 				0FF5397C238F7FC00064B42B /* Preview Content */,
-				0F99A1ED23A6FB81005676FE /* MealBase.swift */,
 				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
+				0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */,
 			);
 			path = Viddles;
 			sourceTree = "<group>";
@@ -170,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				0FF5398B238F7FC10064B42B /* NomsTests.swift */,
-				0FF5398D238F7FC10064B42B /* Info.plist */,
 			);
 			path = ViddlesTests;
 			sourceTree = "<group>";
@@ -315,13 +329,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F99A1EE23A6FB81005676FE /* MealBase.swift in Sources */,
+				0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */,
 				0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */,
 				0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */,
 				0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */,
 				0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */,
 				0FF53979238F7FBC0064B42B /* ContentView.swift in Sources */,
+				0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */,
 				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
+				0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */,
 				0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */,
 				0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */,
 			);
