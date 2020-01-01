@@ -23,11 +23,7 @@ struct NomsView: View {
             Spacer()
             HStack {
                 ForEach(meel.noms, id: \.id) { nom in
-                    [
-                        Image("RoundFace"),
-                        Image("BlueFace"),
-                        Image("RedFace")
-                    ].randomElement()
+                    Image(nom.type ?? Nom.randomType())
                 }
             }.onTapGesture {
                 self.showingAlert.toggle()
