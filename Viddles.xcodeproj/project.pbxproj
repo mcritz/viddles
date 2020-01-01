@@ -15,6 +15,8 @@
 		0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */; };
 		0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310ED23BA662D002EE9B3 /* NomsView.swift */; };
 		0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */; };
+		0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F123BAA78B002EE9B3 /* NomReminder.swift */; };
+		0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F323BAA865002EE9B3 /* NomReminderController.swift */; };
 		0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53971238F7FBC0064B42B /* AppDelegate.swift */; };
 		0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53973238F7FBC0064B42B /* SceneDelegate.swift */; };
 		0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */; };
@@ -53,6 +55,8 @@
 		0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+RandomAccessCollection.swift"; sourceTree = "<group>"; };
 		0F8310ED23BA662D002EE9B3 /* NomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsView.swift; sourceTree = "<group>"; };
 		0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDayDetailView.swift; sourceTree = "<group>"; };
+		0F8310F123BAA78B002EE9B3 /* NomReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminder.swift; sourceTree = "<group>"; };
+		0F8310F323BAA865002EE9B3 /* NomReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminderController.swift; sourceTree = "<group>"; };
 		0FF5396E238F7FBC0064B42B /* Noms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF53973238F7FBC0064B42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0F8310F523BAD902002EE9B3 /* Nom Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				0F8310F123BAA78B002EE9B3 /* NomReminder.swift */,
+				0F8310F323BAA865002EE9B3 /* NomReminderController.swift */,
+			);
+			path = "Nom Reminder";
+			sourceTree = "<group>";
+		};
 		0FF53965238F7FBB0064B42B = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +182,7 @@
 				0FF5397C238F7FC00064B42B /* Preview Content */,
 				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
 				0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */,
+				0F8310F523BAD902002EE9B3 /* Nom Reminder */,
 			);
 			path = Viddles;
 			sourceTree = "<group>";
@@ -329,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */,
 				0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */,
 				0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */,
 				0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */,
@@ -337,6 +352,7 @@
 				0FF53979238F7FBC0064B42B /* ContentView.swift in Sources */,
 				0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */,
 				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
+				0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */,
 				0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */,
 				0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */,
 				0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */,

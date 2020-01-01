@@ -46,6 +46,19 @@ struct ContentView: View {
                 alignment: .top)
     }
     
+    
+    func handleNotificationTap() {
+        let nomReminderCntlr = NomReminderController()
+        nomReminderCntlr.createReminders()
+    }
+    
+    fileprivate func notifcationPrefView() -> some View {
+        let imageName = "bell.fill"
+        let image = Image(systemName: imageName).foregroundColor(Color("PrimaryAccent")).onTapGesture {            self.handleNotificationTap()
+        }
+        return image
+    }
+    
     var body: some View {
         ZStack {
             Color("PrimaryBackground")
@@ -61,8 +74,10 @@ struct ContentView: View {
                         }.padding()
                         .background(Color(.systemBackground))
                         .cornerRadius(20)
-                    }
+                    }.foregroundColor(Color(.label))
                     .navigationBarTitle("Noms")
+                    .foregroundColor(Color("PrimaryAccent"))
+                    .navigationBarItems(trailing: notifcationPrefView())
                 }
                 BigButton()
             }

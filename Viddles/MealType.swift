@@ -26,8 +26,10 @@ enum MealType: String, Codable, CustomStringConvertible {
             type = .breakfast
         case 11...13:
             type = .lunch
-        case 17...19:
+        case 17...20:
             type = .dinner
+        case 22...24:
+            type = .midnight
         default:
             type = .snack
         }
