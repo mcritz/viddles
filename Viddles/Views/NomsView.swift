@@ -11,6 +11,7 @@ import Combine
 
 struct NomsView: View {
     @ObservedObject var meel: Meal
+    @State var showingAlert = false
     
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 20) {
@@ -29,7 +30,14 @@ struct NomsView: View {
                     ].randomElement()
                 }
             }.onTapGesture {
-                self.meel.vomit()
+                self.showingAlert.toggle()
+            }.actionSheet(isPresented: self.$showingAlert) {
+                ActionSheet(title: Text("Delete Nom?"),
+                            buttons: [
+                                .destructive(Text("Delete")) {
+                                    self.meel.vomit()
+                                },
+                                .cancel()])
             }
         }
     }
