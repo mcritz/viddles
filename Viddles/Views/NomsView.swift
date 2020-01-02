@@ -14,7 +14,7 @@ struct NomsView: View {
     @State var showingAlert = false
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 20) {
+        HStack(alignment: .center, spacing: 20) {
             Text(meel.description)
                 .font(.subheadline)
                 .onTapGesture {
@@ -36,5 +36,6 @@ struct NomsView: View {
                                 .cancel()])
             }
         }
+        .padding([.vertical])
     }
 }

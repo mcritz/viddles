@@ -15,9 +15,7 @@ struct MealDayDetailView: View {
     var body: some View {
         VStack(alignment: .center) {
             ForEach(mealDay.orderedMeals, id: \.self) { meal in
-                HStack(alignment: .top, spacing: 30) {
-                    NomsView(meel: meal)
-                }.padding()
+                NomsView(meel: meal)
             }
         }
     }
