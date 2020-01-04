@@ -40,7 +40,7 @@
     <resources>
         <image name="RoundFaceLarge" width="224" height="224"/>
         <namedColor name="PrimaryBackground">
-            <color red="1" green="0.94999998807907104" blue="0.88400000333786011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.93400000000000005" green="0.92500000000000004" blue="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
