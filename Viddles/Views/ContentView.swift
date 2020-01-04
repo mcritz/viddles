@@ -54,8 +54,11 @@ struct ContentView: View {
     
     fileprivate func notifcationPrefView() -> some View {
         let imageName = "bell.fill"
-        let image = Image(systemName: imageName).foregroundColor(Color("PrimaryAccent")).onTapGesture {            self.handleNotificationTap()
-        }
+        let image = Image(systemName: imageName)
+            .foregroundColor(Color("PrimaryAccent"))
+            .onTapGesture {
+                self.handleNotificationTap()
+            }
         return image
     }
     
@@ -71,10 +74,12 @@ struct ContentView: View {
                                 .font(.headline)
                                 .multilineTextAlignment(.center)
                             MealDayDetailView(mealDay: day)
-                        }.padding()
+                        }
+                        .padding()
                         .background(Color(.systemBackground))
                         .cornerRadius(20)
-                    }.foregroundColor(Color(.label))
+                    }
+                    .foregroundColor(Color(.label))
                     .navigationBarTitle("Noms")
                     .foregroundColor(Color("PrimaryAccent"))
                     .navigationBarItems(trailing: notifcationPrefView())
