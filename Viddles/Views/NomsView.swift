@@ -25,9 +25,11 @@ struct NomsView: View {
                 ForEach(meel.noms, id: \.id) { nom in
                     Image(nom.type ?? Nom.randomType())
                 }
-            }.onTapGesture {
+            }
+            .onTapGesture {
                 self.showingAlert.toggle()
-            }.actionSheet(isPresented: self.$showingAlert) {
+            }
+            .actionSheet(isPresented: self.$showingAlert) {
                 ActionSheet(title: Text("Delete Nom?"),
                             buttons: [
                                 .destructive(Text("Delete")) {
