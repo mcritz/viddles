@@ -7,51 +7,117 @@
 //
 
 import UIKit
+import Combine
 
-class NomReminderController {
-    let nomReminders: [NomReminder]
-    let center = UNUserNotificationCenter.current()
+class NomReminderController: ObservableObject {
+    @Published var reminderStatus = ReminderStatus.unauthorized {
+        didSet {
+            print("Status set to:", $reminderStatus)
+        }
+    }
+    private let nomReminders: [NomReminder]
+    private let center = UNUserNotificationCenter.current()
+    private let statusSubject = CurrentValueSubject<ReminderStatus, Never>(.pending)
+    private var subscriptions = Set<AnyCancellable>()
     
-    func createReminders() {
-        nomReminders.forEach { reminder in
+    func toggleReminders() {
+        // Hold permissions if we have them, but disable notifications
+        if reminderStatus == .authorized {
+            // TODO: Cancel otifications
+            self.statusSubject.send(.disabled)
+            return
+        }
+        
+        // User requests reminders
+        statusSubject.send(.pending)
+        
+        checkNotificationPermissions { status in
+            guard status == .authorized else {
+                self.requestNotificationsAuthorization {
+                    self.scheduleReminders()
+                }
+                return
+            }
+            self.scheduleReminders()
+        }
+    }
+    
+    private func scheduleReminders() {
+        guard reminderStatus == .authorized else { return }
+        self.nomReminders.forEach { reminder in
             let notification = UNMutableNotificationContent()
             notification.title = reminder.title
             notification.body = reminder.message
-            let trigger = UNCalendarNotificationTrigger(dateMatching: reminder.reminderHours, repeats: true)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: reminder.reminderHours,
+                                                        repeats: true)
             let request = UNNotificationRequest(identifier: reminder.id.uuidString,
                                         content: notification,
                                         trigger: trigger)
-            center.add(request) { (err) in
+            self.center.add(request) { (err) in
                 if let realError = err {
+                    self.statusSubject.send(.error)
                     print(realError.localizedDescription)
+                    return
                 }
             }
         }
+        save()
     }
     
-    func checkNotificationPermissions(completion: @escaping (Bool) -> Void) {
+    func checkNotificationPermissions(completion: @escaping (ReminderStatus) -> ()) {
         center.getNotificationSettings { settings in
-            if settings.authorizationStatus == .authorized {
-                completion(true)
-            } else {
-                completion(false)
+            if self.reminderStatus == .pending {
+                completion(.pending)
+                return
+            }
+            switch settings.authorizationStatus {
+            case .denied:
+                self.statusSubject.send(.unauthorized)
+                completion(.unauthorized)
+            case .notDetermined:
+                self.statusSubject.send(.pending)
+                completion(.pending)
+            default:
+                self.statusSubject.send(.authorized)
+                completion(.authorized)
             }
         }
     }
     
-    func requestNotifications(completion: @escaping (Bool) -> Void) {
+    private func save() {
+        for type in MealType.allTypes {
+            UserDefaults.standard.setValue(nil, forKey: type.description)
+        }
+        for reminder in nomReminders {
+            UserDefaults.standard.setValue(reminder.id,
+                                           forKey: reminder.type.description)
+        }
+    }
+    
+    func requestNotificationsAuthorization(completion: @escaping () -> ()) {
         center.requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let realError = error {
                 print(realError.localizedDescription)
-                completion(false)
+                self.statusSubject.send(.error)
+                completion()
+                return
+            }
+            if !granted,
+            self.reminderStatus == .pending,
+            let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                DispatchQueue.main.async {
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    completion()
+                }
                 return
             }
             if !granted {
-                print("User did not grant permissions")
-                completion(false)
+                self.statusSubject.send(.unauthorized)
+                completion()
                 return
             }
-            completion(true)
+            self.statusSubject.send(.authorized)
+            completion()
         }
     }
     
@@ -67,14 +133,40 @@ class NomReminderController {
                                message: NSLocalizedString("Time to log your noms", comment: "")
             )
         }
-        checkNotificationPermissions(completion: { isAuthorized in
-            if !isAuthorized {
-                self.requestNotifications { (didAuthorize) in
-                    if !didAuthorize {
-                        return
-                    }
+        
+        _ = self.statusSubject
+            .subscribe(on: DispatchQueue.main)
+            .sink { (newStatus) in
+                print("New Status:", newStatus)
+                DispatchQueue.main.async {
+                    self.reminderStatus = newStatus
                 }
-            }
+        }.store(in: &subscriptions)
+        
+        
+        checkNotificationPermissions(completion: { _ in
         })
     }
+}
+
+/**
+ ReminderStatus State Machine
+                                                                (On user prompt)
+        ┌───────────────────────────────────────────────────────────────────────┐
+        ▼                                                                       │
+ ┌─────────────┐                      Λ                          Λ     ┌────────────────┐
+ │             │   ┌─────────────────╱ ╲      ┌─────────────────╱ ╲    │                │
+ │  .pending   │───▶     ERROR?     ▕   ──NO──▶ IS AUTHORIZED? ▕   ─NO─▶ .unauthorized  |
+ │             │   └─────────────────╲ ╱      └─────────────────╲ ╱    │                │
+ └─────────────┘                      │                          │     └────────────────┘
+        ▲                          YES │                      YES │
+        │                          ┌───▼───┐               ┌──────▼─────┐        ┌────────────┐
+        │                          │       │               │            │        │            │
+        └──────────────────────────│.error │               │ .authorized│        │ .disabled  │
+                    (On user prompt)│       │               │            ◀────────▶            │
+                                      └───────┘               └────────────┘        └────────────┘
+                                                                            (On user prompt)
+*/
+public enum ReminderStatus {
+    case pending, error, unauthorized, authorized, disabled
 }

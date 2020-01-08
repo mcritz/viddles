@@ -16,6 +16,12 @@ enum MealType: String, Codable, CustomStringConvertible {
         }
     }
     
+    static var allTypes: [MealType] {
+        get {
+            return [.snack, .breakfast, .lunch, .dinner, .midnight]
+        }
+    }
+    
     static func getCurrent() -> MealType {
         let hour = Calendar.current.component(.hour, from: Date())
         var type: MealType

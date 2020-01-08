@@ -9,10 +9,10 @@
 import SwiftUI
 import Combine
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
+    @EnvironmentObject var reminderCntlr: NomReminderController
     
     init() {
         UITableView.appearance().separatorStyle = .none
@@ -48,18 +48,22 @@ struct ContentView: View {
     
     
     func handleNotificationTap() {
-        let nomReminderCntlr = NomReminderController()
-        nomReminderCntlr.createReminders()
+        reminderCntlr.toggleReminders()
     }
     
     fileprivate func notifcationPrefView() -> some View {
-        let imageName = "bell.fill"
-        let image = Image(systemName: imageName)
-            .foregroundColor(Color("PrimaryAccent"))
-            .onTapGesture {
-                self.handleNotificationTap()
-            }
-        return image
+        let imageName = reminderCntlr.reminderStatus == .authorized ? "bell.fill" : "bell.slash.fill"
+        let labelString = NSLocalizedString("Reminders", comment: "")
+        
+        return Button(action: {
+            self.handleNotificationTap()
+        }) {
+            Image(systemName: imageName)
+                .foregroundColor(Color("PrimaryAccent"))
+                .scaledToFill()
+            Text(labelString)
+                .foregroundColor(Color("PrimaryAccent"))
+        }
     }
     
     var body: some View {
