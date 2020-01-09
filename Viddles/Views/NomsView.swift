@@ -22,10 +22,15 @@ struct NomsView: View {
                 }
             Spacer()
             HStack {
-                ForEach(meel.noms, id: \.id) { nom in
-                    Image(nom.type ?? Nom.randomType())
+                if meel.noms.count > 4 {
+                    Image("FatFaceOrange")
+                } else {
+                    ForEach(meel.noms, id: \.id) { nom in
+                        Image(nom.type ?? Nom.randomType())
+                    }
                 }
             }
+            .frame(minWidth: 100, idealWidth: 300, maxWidth: 450, alignment: .trailing)
             .onTapGesture {
                 self.showingAlert.toggle()
             }
