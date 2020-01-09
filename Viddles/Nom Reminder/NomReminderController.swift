@@ -10,11 +10,7 @@ import UIKit
 import Combine
 
 class NomReminderController: ObservableObject {
-    @Published var reminderStatus = ReminderStatus.unauthorized {
-        didSet {
-            print("Status set to:", $reminderStatus)
-        }
-    }
+    @Published var reminderStatus = ReminderStatus.unauthorized
     private let nomReminders: [NomReminder]
     private let center = UNUserNotificationCenter.current()
     private let statusSubject = CurrentValueSubject<ReminderStatus, Never>(.pending)
@@ -23,8 +19,10 @@ class NomReminderController: ObservableObject {
     func toggleReminders() {
         // Hold permissions if we have them, but disable notifications
         if reminderStatus == .authorized {
-            // TODO: Cancel otifications
             self.statusSubject.send(.disabled)
+            center.removeAllDeliveredNotifications()
+            center.removeAllPendingNotificationRequests()
+            UserDefaults.standard.set(false, forKey: "RemindersEnabled")
             return
         }
         
@@ -43,7 +41,6 @@ class NomReminderController: ObservableObject {
     }
     
     private func scheduleReminders() {
-        guard reminderStatus == .authorized else { return }
         self.nomReminders.forEach { reminder in
             let notification = UNMutableNotificationContent()
             notification.title = reminder.title
@@ -61,15 +58,20 @@ class NomReminderController: ObservableObject {
                 }
             }
         }
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            print("Notifs Requests:", requests)
+        })
         save()
     }
     
     func checkNotificationPermissions(completion: @escaping (ReminderStatus) -> ()) {
+        let remindersEnabled = UserDefaults.standard.bool(forKey: "RemindersEnabled")
+        guard remindersEnabled else {
+            self.statusSubject.send(.disabled)
+            completion(.disabled)
+            return
+        }
         center.getNotificationSettings { settings in
-            if self.reminderStatus == .pending {
-                completion(.pending)
-                return
-            }
             switch settings.authorizationStatus {
             case .denied:
                 self.statusSubject.send(.unauthorized)
@@ -86,12 +88,14 @@ class NomReminderController: ObservableObject {
     
     private func save() {
         for type in MealType.allTypes {
-            UserDefaults.standard.setValue(nil, forKey: type.description)
+            UserDefaults.standard.removeObject(forKey: type.description)
         }
         for reminder in nomReminders {
-            UserDefaults.standard.setValue(reminder.id,
+            UserDefaults.standard.setValue(reminder.id.uuidString,
                                            forKey: reminder.type.description)
         }
+        UserDefaults.standard.set(true, forKey: "RemindersEnabled")
+        print("Reminders scheduled")
     }
     
     func requestNotificationsAuthorization(completion: @escaping () -> ()) {
@@ -103,7 +107,6 @@ class NomReminderController: ObservableObject {
                 return
             }
             if !granted,
-            self.reminderStatus == .pending,
             let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 DispatchQueue.main.async {
                     UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
@@ -128,9 +131,9 @@ class NomReminderController: ObservableObject {
             MealType.dinner
         ].map { type in
             return NomReminder(type: type,
-                               reminderHours: NomReminder.reminderDate(for: type),
-                               title: type.description,
-                               message: NSLocalizedString("Time to log your noms", comment: "")
+                                reminderHours: NomReminder.reminderDate(for: type),
+                                title: type.description,
+                                message: NSLocalizedString("Time to log your noms", comment: "")
             )
         }
         
@@ -143,9 +146,11 @@ class NomReminderController: ObservableObject {
                 }
         }.store(in: &subscriptions)
         
-        
-        checkNotificationPermissions(completion: { _ in
-        })
+        let remindersEnabled = UserDefaults.standard.bool(forKey: "RemindersEnabled")
+        if !remindersEnabled {
+            reminderStatus = .disabled
+            return
+        }
     }
 }
 
