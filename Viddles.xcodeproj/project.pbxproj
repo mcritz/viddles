@@ -57,7 +57,7 @@
 		0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDayDetailView.swift; sourceTree = "<group>"; };
 		0F8310F123BAA78B002EE9B3 /* NomReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminder.swift; sourceTree = "<group>"; };
 		0F8310F323BAA865002EE9B3 /* NomReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminderController.swift; sourceTree = "<group>"; };
-		0FF5396E238F7FBC0064B42B /* Noms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noms.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FF5396E238F7FBC0064B42B /* Noms!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Noms!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF53973238F7FBC0064B42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0FF53976238F7FBC0064B42B /* Viddles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Viddles.xcdatamodel; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		0FF5396F238F7FBC0064B42B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0FF5396E238F7FBC0064B42B /* Noms.app */,
+				0FF5396E238F7FBC0064B42B /* Noms!.app */,
 				0FF53987238F7FC10064B42B /* ViddlesTests.xctest */,
 				0FF53992238F7FC10064B42B /* ViddlesUITests.xctest */,
 			);
@@ -229,7 +229,7 @@
 			);
 			name = Viddles;
 			productName = Viddles;
-			productReference = 0FF5396E238F7FBC0064B42B /* Noms.app */;
+			productReference = 0FF5396E238F7FBC0064B42B /* Noms!.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0FF53986238F7FC10064B42B /* ViddlesTests */ = {
@@ -523,6 +523,7 @@
 				CODE_SIGN_ENTITLEMENTS = Viddles/Noms.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
 				DEVELOPMENT_TEAM = UB37VMGP6E;
 				ENABLE_PREVIEWS = YES;
@@ -531,9 +532,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
-				PRODUCT_NAME = Noms;
+				PRODUCT_NAME = "Noms!";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -547,6 +548,7 @@
 				CODE_SIGN_ENTITLEMENTS = Viddles/Noms.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
 				DEVELOPMENT_TEAM = UB37VMGP6E;
 				ENABLE_PREVIEWS = YES;
@@ -555,9 +557,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
-				PRODUCT_NAME = Noms;
+				PRODUCT_NAME = "Noms!";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
