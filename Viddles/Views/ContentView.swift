@@ -34,7 +34,12 @@ struct ContentView: View {
                 .frame(minWidth: 80, maxWidth: .infinity)
                 .padding()
                 .foregroundColor(Color(.label))
-                .background(Color(.systemGreen))
+                .background(
+                    RadialGradient(gradient: Gradient(colors: [Color(.systemGreen), Color(.systemYellow)]),
+                                   center: .center,
+                                   startRadius: 0.0,
+                                   endRadius: 300.0)
+                )
                 .cornerRadius(40)
                 .padding(.horizontal, 20.0)
         }.frame(minWidth: 150,
@@ -67,7 +72,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color("PrimaryBackground")
                 .edgesIgnoringSafeArea(.all)
             VStack {
@@ -88,8 +93,14 @@ struct ContentView: View {
                     .foregroundColor(Color("PrimaryAccent"))
                     .navigationBarItems(trailing: notifcationPrefView())
                 }
-                BigButton()
             }
+            LinearGradient(gradient:
+                Gradient(colors: [.clear, Color("PrimaryBackground")]),
+                           startPoint: .top,
+                           endPoint: .bottom)
+                .frame(height: 120).offset(x: 0, y: 40)
+            BigButton()
+                .offset(x: 0, y: -20)
         }
     }
 }

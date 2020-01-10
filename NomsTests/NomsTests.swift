@@ -1,11 +1,11 @@
 //
-//  ViddlesTests.swift
-//  ViddlesTests
+//  NomsTests.swift
+//  NomsTests
 //
-//  Created by Michael Critz on 11/27/19.
-//  Copyright © 2019 pixel.science. All rights reserved.
+//  Created by Michael Critz on 1/9/20.
+//  Copyright © 2020 pixel.science. All rights reserved.
 //
-    
+
 import XCTest
 import CoreData
 @testable import Noms
@@ -13,13 +13,22 @@ import CoreData
 class NomsTests: XCTestCase {
     
     var delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
     override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+    
     func testSetRandomAccess() {
         let set: Set<String> = ["Hello", "World"]
         XCTAssertNotNil(set.index(before: set.firstIndex(of: "World")!))
@@ -41,6 +50,12 @@ class NomsTests: XCTestCase {
         XCTAssertNotNil(nom.id)
         XCTAssertNotNil(nom.createdAt)
         XCTAssertNil(nom.meal)
+        XCTAssertNotNil(nom.imageName)
+    }
+    
+    func testNomFetchRequest() {
+        let fetchRequest = Nom.fetchRequest()
+        XCTAssertNotNil(fetchRequest)
     }
     
     func testMeal() {

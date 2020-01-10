@@ -32,6 +32,7 @@ extension Nom {
         newNom.setValue(Nom.randomType(), forKey: #keyPath(Nom.type))
         return newNom
     }
+    
     static func randomType() -> String {
         return [
             "RoundFace",
@@ -43,6 +44,7 @@ extension Nom {
 }
 
 extension Nom {
+    
     func imageName() -> String {
         guard let name = self.type else {
             return "RoundFace"

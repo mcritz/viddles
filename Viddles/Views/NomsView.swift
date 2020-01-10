@@ -15,11 +15,16 @@ struct NomsView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 20) {
-            Text(meel.description)
-                .font(.subheadline)
-                .onTapGesture {
-                    self.meel.eat()
-                }
+            VStack(alignment: .leading) {
+                Text(meel.description)
+                    .font(.subheadline)
+                Text(meel.formattedDate)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+            .onTapGesture {
+                self.meel.eat()
+            }
             Spacer()
             HStack {
                 if meel.noms.count > 4 {
@@ -30,7 +35,7 @@ struct NomsView: View {
                     }
                 }
             }
-            .frame(minWidth: 100, idealWidth: 300, maxWidth: 450, alignment: .trailing)
+            .frame(minWidth: 100, idealWidth: 400, maxWidth: 550, alignment: .trailing)
             .onTapGesture {
                 self.showingAlert.toggle()
             }

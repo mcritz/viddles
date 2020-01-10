@@ -17,12 +17,15 @@ public class Meal: NSManagedObject {
     
     override public var description: String {
         get {
-            let mealName = self.type?.capitalized(with: Locale.current) ?? "Noms"
-            guard let createdAt = createdAt else { return mealName }
-            let formatter = DateFormatter()
-            formatter.timeStyle = .short
-            return mealName + " " + formatter.string(from: createdAt)
+            return self.type?.capitalized(with: Locale.current) ?? "Noms"
         }
+    }
+    
+    var formattedDate: String {
+        guard let createdAt = createdAt else { return "—" }
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: createdAt)
     }
 }
 
