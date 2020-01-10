@@ -36,7 +36,8 @@ extension Nom {
         return [
             "RoundFace",
             "BlueFace",
-            "RedFace"
+            "RedFace",
+            "GreenFace"
             ].randomElement()!
     }
 }

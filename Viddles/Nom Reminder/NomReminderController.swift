@@ -168,9 +168,9 @@ class NomReminderController: ObservableObject {
         │                          ┌───▼───┐               ┌──────▼─────┐        ┌────────────┐
         │                          │       │               │            │        │            │
         └──────────────────────────│.error │               │ .authorized│        │ .disabled  │
-                    (On user prompt)│       │               │            ◀────────▶            │
-                                      └───────┘               └────────────┘        └────────────┘
-                                                                            (On user prompt)
+                  ( On user prompt)│       │               │            ◀────────▶            │
+                                   └───────┘               └────────────┘        └────────────┘
+                                                                    (On user prompt)
 */
 public enum ReminderStatus {
     case pending, error, unauthorized, authorized, disabled

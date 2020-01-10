@@ -18,7 +18,7 @@ struct NomReminder: Codable {
     static func reminderDate(for type: MealType) -> DateComponents {
         switch type {
         case .breakfast:
-            return DateComponents(hour: 8)
+            return DateComponents(hour: 9)
         case .lunch:
             return DateComponents(hour: 13)
         case .dinner:
