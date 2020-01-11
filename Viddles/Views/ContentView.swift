@@ -95,10 +95,11 @@ struct ContentView: View {
                 }
             }
             LinearGradient(gradient:
-                Gradient(colors: [.clear, Color("PrimaryBackground")]),
+                Gradient(colors: [Color("PrimaryTransparent"), Color("PrimaryBackground")]),
                            startPoint: .top,
                            endPoint: .bottom)
                 .frame(height: 120).offset(x: 0, y: 40)
+                .edgesIgnoringSafeArea(.all)
             BigButton()
                 .offset(x: 0, y: -20)
         }

@@ -16,6 +16,7 @@ struct MealDayDetailView: View {
         VStack(alignment: .center) {
             ForEach(mealDay.orderedMeals, id: \.self) { meal in
                 NomsView(meel: meal)
+                    .animation(.linear(duration: 0.24))
             }
         }
     }
