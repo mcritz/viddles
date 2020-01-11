@@ -38,7 +38,7 @@ struct ContentView: View {
                     RadialGradient(gradient: Gradient(colors: [Color(.systemGreen), Color(.systemYellow)]),
                                    center: .center,
                                    startRadius: 0.0,
-                                   endRadius: 300.0)
+                                   endRadius: 800.0)
                 )
                 .cornerRadius(40)
                 .padding(.horizontal, 20.0)
@@ -49,6 +49,7 @@ struct ContentView: View {
                 idealHeight: 20,
                 maxHeight: 40,
                 alignment: .top)
+        .animation(.interactiveSpring())
     }
     
     
@@ -87,6 +88,9 @@ struct ContentView: View {
                         .padding()
                         .background(Color(.systemBackground))
                         .cornerRadius(20)
+                        .animation(.spring(response: 0.5,
+                                           dampingFraction: 1.0,
+                                           blendDuration: 0.75))
                     }
                     .foregroundColor(Color(.label))
                     .navigationBarTitle("Noms")
