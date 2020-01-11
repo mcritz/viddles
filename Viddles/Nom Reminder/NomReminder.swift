@@ -14,6 +14,7 @@ struct NomReminder: Codable {
     let reminderHours: DateComponents
     let title: String
     let message: String
+    let attachmentURL: URL? = Bundle.main.url(forResource: "RoundFaceLarge", withExtension: "pdf")
     
     static func reminderDate(for type: MealType) -> DateComponents {
         switch type {

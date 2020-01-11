@@ -45,6 +45,14 @@ class NomReminderController: ObservableObject {
             let notification = UNMutableNotificationContent()
             notification.title = reminder.title
             notification.body = reminder.message
+            if let realURL = reminder.attachmentURL {
+                if let attachment = try? UNNotificationAttachment(identifier:
+                                             "image",
+                                                                  url: realURL,
+                                                                  options: nil) {
+                   notification.attachments = [attachment]
+                }
+            }
             let trigger = UNCalendarNotificationTrigger(dateMatching: reminder.reminderHours,
                                                         repeats: true)
             let request = UNNotificationRequest(identifier: reminder.id.uuidString,
