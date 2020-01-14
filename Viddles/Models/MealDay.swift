@@ -31,8 +31,8 @@ extension MealDay {
     
     public var orderedMeals: [Meal] {
         get {
-            return meals.sorted { (akok, esdf) -> Bool in
-                if let comparison = akok.createdAt?.distance(to: esdf.createdAt!) {
+            return meals.sorted {
+                if let comparison = $0.createdAt?.distance(to: $1.createdAt!) {
                     return comparison > 0
                 }
                 return false
@@ -49,10 +49,10 @@ extension MealDay {
 
 extension MealDay {
     
-    static func checkNewDay(context: NSManagedObjectContext) -> MealDay {
+    static func mealDay(context: NSManagedObjectContext, for date: Date = Date()) -> MealDay {
         let todaysMealDayFetchRequest = NSFetchRequest<MealDay>(entityName: "MealDay")
         
-        let todayComponents = Calendar(identifier: .iso8601).dateComponents([.day, .month, .year], from: Date())
+        let todayComponents = Calendar(identifier: .iso8601).dateComponents([.day, .month, .year], from: date)
         let thisDay = Calendar(identifier: .iso8601).date(from: todayComponents)!
         
         let todaysMealDayPredicates = NSPredicate(format: "createdAt > %@", argumentArray: [thisDay])
@@ -79,19 +79,23 @@ extension MealDay {
     }
     
     
-    static func eat(_ context: NSManagedObjectContext) {
+    static func eat(_ context: NSManagedObjectContext,
+                         type: MealType = MealType.getCurrent(),
+                         date: Date = Date()) {
         
-        let mealDay = MealDay.checkNewDay(context: context)
-        
-        let type = MealType.getCurrent()
+        let mealDay = MealDay.mealDay(context: context, for: date)
         let currentMeal = mealDay.meals.filter{ meal -> Bool in
             return meal.type == type.rawValue
         }
         if let matchedMeal = currentMeal.first {
-            matchedMeal.addToNoms(Nom.newNom(context: context))
+            matchedMeal.addToNoms(Nom.newNom(context: context, date: date))
         } else {
-            let newMeal = Meal.new(in: context, with: Nom.newNom(context: context))
+            let newMeal = Meal(context: context)
+            newMeal.setValue(UUID(), forKey: #keyPath(Meal.id))
+            newMeal.setValue(type.rawValue, forKey: #keyPath(Meal.type))
             newMeal.setValue(mealDay, forKey: #keyPath(Meal.mealDay))
+            newMeal.setValue(date, forKey: #keyPath(Meal.createdAt))
+            newMeal.addToNoms(Nom.newNom(context: context, date: date))
             context.insert(newMeal)
         }
         try? context.save()

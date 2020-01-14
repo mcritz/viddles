@@ -24,10 +24,10 @@ extension Nom {
         return request
     }
     
-    static func newNom(context: NSManagedObjectContext) -> Nom {
+    static func newNom(context: NSManagedObjectContext, date: Date? = Date()) -> Nom {
         let newNom = Nom(context: context)
         newNom.setValue(UUID(), forKey: #keyPath(Nom.id))
-        newNom.setValue(Date(), forKey: #keyPath(Nom.createdAt))
+        newNom.setValue(date, forKey: #keyPath(Nom.createdAt))
         newNom.setValue(150, forKey: #keyPath(Nom.value))
         newNom.setValue(Nom.randomType(), forKey: #keyPath(Nom.type))
         return newNom
@@ -50,5 +50,42 @@ extension Nom {
             return "RoundFace"
         }
         return name
+    }
+}
+
+
+extension Nom {
+    static func reminderDate(for type: MealType) -> DateComponents {
+        switch type {
+        case .breakfast:
+            return DateComponents(hour: 9)
+        case .lunch:
+            return DateComponents(hour: 13)
+        case .dinner:
+            return DateComponents(hour: 19)
+        default:
+            return DateComponents(hour: 22)
+        }
+    }
+    
+    /// Returns an approximate Date for a meal, or Date()
+    /// - Parameter type: MealType
+    static func nominalDate(for type: MealType, on date: Date?) -> Date {
+        guard let hourValue = Nom.reminderDate(for: type).hour else {
+            return Date()
+        }
+        var targetDate: Date = Date()
+        if let realDate = date {
+            targetDate = realDate
+        }
+        var components = Calendar(identifier: .iso8601)
+            .dateComponents([.day, .month, .year, .timeZone], from: targetDate)
+        components.hour = hourValue
+        guard let nominal = Calendar(identifier: .iso8601)
+            .date(from: components) else {
+                    return Date()
+        }
+        print("Nominal", nominal)
+        return nominal
     }
 }

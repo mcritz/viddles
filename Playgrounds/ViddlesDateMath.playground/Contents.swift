@@ -9,6 +9,9 @@ let oldDate = Date(timeInterval: seconds, since: Date())
 
 let difference = Calendar(identifier: .iso8601).dateComponents([Calendar.Component.day], from: Date(), to: oldDate)
 
-let todayComponents = Calendar(identifier: .iso8601).dateComponents([.day, .month, .year], from: Date())
+var todayComponents = Calendar(identifier: .iso8601).dateComponents([.day, .month, .year], from: Date())
+
+todayComponents.hour = 9
 
 let thisDay = Calendar(identifier: .iso8601).date(from: todayComponents)
+let otherDay = Calendar(identifier: .iso8601).date(bySetting: .hour, value: 23, of: thisDay!)

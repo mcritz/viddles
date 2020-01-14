@@ -51,7 +51,11 @@ extension Meal {
         let newMeal = Meal(context: context)
         newMeal.setValue(UUID(), forKey: #keyPath(Meal.id))
         newMeal.setValue(MealType.getCurrent().rawValue, forKey: #keyPath(Meal.type))
-        newMeal.setValue(Date(), forKey: #keyPath(Meal.createdAt))
+        var mealDate = Date()
+        if let realNomDate = nom?.createdAt {
+            mealDate = realNomDate
+        }
+        newMeal.setValue(mealDate, forKey: #keyPath(Meal.createdAt))
         if let realNom = nom {
             newMeal.addToNoms(realNom)
         }

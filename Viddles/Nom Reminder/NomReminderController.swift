@@ -139,7 +139,7 @@ class NomReminderController: ObservableObject {
             MealType.dinner
         ].map { type in
             return NomReminder(type: type,
-                                reminderHours: NomReminder.reminderDate(for: type),
+                                reminderHours: Nom.reminderDate(for: type),
                                 title: type.description,
                                 message: NSLocalizedString("Time to log your noms", comment: "")
             )

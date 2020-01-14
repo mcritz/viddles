@@ -84,6 +84,40 @@ struct ContentView: View {
                                 .font(.headline)
                                 .multilineTextAlignment(.center)
                             MealDayDetailView(mealDay: day)
+                                .contextMenu {
+                                    Button(action: {
+                                        MealDay.eat(self.context,
+                                                    type: .breakfast,
+                                                    date: Nom.nominalDate(for: .breakfast,
+                                                                          on: day.createdAt))
+                                    }) {
+                                        Text("Nom Breakfast")
+                                    }
+                                    Button(action: {
+                                        MealDay.eat(self.context,
+                                                    type: .lunch,
+                                                    date: Nom.nominalDate(for: .breakfast,
+                                                                          on: day.createdAt))
+                                    }) {
+                                        Text("Nom Lunch")
+                                    }
+                                    Button(action: {
+                                        MealDay.eat(self.context,
+                                                    type: .dinner,
+                                                    date: Nom.nominalDate(for: .dinner,
+                                                                          on: day.createdAt))
+                                    }) {
+                                        Text("Nom Dinner")
+                                    }
+                                    Button(action: {
+                                        MealDay.eat(self.context,
+                                                    type: .snack,
+                                                    date: Nom.nominalDate(for: .snack,
+                                                                          on: day.createdAt))
+                                    }) {
+                                        Text("Nom Snack")
+                                    }
+                            }
                         }
                         .padding()
                         .background(Color(.systemBackground))
