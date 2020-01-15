@@ -80,5 +80,24 @@ class NomsTests: XCTestCase {
         meal.vomit()
         XCTAssertEqual(meal.noms.count, 0)
     }
+    
+    func testMealDay() {
+        let context = delegate.persistentContainer.viewContext
+        let mealDay = MealDay.newDay(context: context)
+        
+        XCTAssertNotNil(mealDay.id)
+        XCTAssertNotNil(mealDay.createdAt)
+        XCTAssertNotNil(mealDay.description)
+        XCTAssertNotNil(mealDay.meals)
+        XCTAssertNotNil(mealDay.orderedMeals)
+        XCTAssertEqual(mealDay.meals.count, 0)
+        
+        MealDay.eat(context, type: MealType.allTypes.randomElement()!, date: Date())
+        
+        let fetchRequest =  NSFetchRequest<MealDay>(entityName: "MealDay")
+        let mealDays = try? context.fetch(fetchRequest)
+        XCTAssertNotNil(mealDays)
+        
+    }
 
 }
