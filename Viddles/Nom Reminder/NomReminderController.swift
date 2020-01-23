@@ -9,19 +9,54 @@
 import UIKit
 import Combine
 
+enum NotificationCategory: String {
+    case action = "eat.action"
+}
+
 class NomReminderController: ObservableObject {
     @Published var reminderStatus = ReminderStatus.unauthorized
     private let nomReminders: [NomReminder]
-    private let center = UNUserNotificationCenter.current()
     private let statusSubject = CurrentValueSubject<ReminderStatus, Never>(.pending)
     private var subscriptions = Set<AnyCancellable>()
+    private let nomNowAction: UNNotificationAction
+    private let nomCategory: UNNotificationCategory
     
+    /// Adds notifications to UNNotificationCenter
+    /// - Parameter nomReminder: model to populate notification
+    func schedule(nomReminder: NomReminder) {
+        let notification = UNMutableNotificationContent()
+        notification.title = nomReminder.title
+        notification.body = nomReminder.message
+        if let realURL = nomReminder.attachmentURL {
+            if let attachment = try? UNNotificationAttachment(identifier:
+                                         "image",
+                                                              url: realURL,
+                                                              options: nil) {
+               notification.attachments = [attachment]
+            }
+        }
+        notification.categoryIdentifier = NotificationCategory.action.rawValue
+        let trigger = UNCalendarNotificationTrigger(dateMatching: nomReminder.reminderHours,
+                                                    repeats: true)
+        let request = UNNotificationRequest(identifier: nomReminder.id.uuidString,
+                                    content: notification,
+                                    trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (err) in
+            if let realError = err {
+                self.statusSubject.send(.error)
+                print(realError.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    /// Toggle notifications
     func toggleReminders() {
         // Hold permissions if we have them, but disable notifications
         if reminderStatus == .authorized {
             self.statusSubject.send(.disabled)
-            center.removeAllDeliveredNotifications()
-            center.removeAllPendingNotificationRequests()
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             UserDefaults.standard.set(false, forKey: "RemindersEnabled")
             return
         }
@@ -40,38 +75,19 @@ class NomReminderController: ObservableObject {
         }
     }
     
+    /// Requests this object’s reminders and saves preferenes
     private func scheduleReminders() {
         self.nomReminders.forEach { reminder in
-            let notification = UNMutableNotificationContent()
-            notification.title = reminder.title
-            notification.body = reminder.message
-            if let realURL = reminder.attachmentURL {
-                if let attachment = try? UNNotificationAttachment(identifier:
-                                             "image",
-                                                                  url: realURL,
-                                                                  options: nil) {
-                   notification.attachments = [attachment]
-                }
-            }
-            let trigger = UNCalendarNotificationTrigger(dateMatching: reminder.reminderHours,
-                                                        repeats: true)
-            let request = UNNotificationRequest(identifier: reminder.id.uuidString,
-                                        content: notification,
-                                        trigger: trigger)
-            self.center.add(request) { (err) in
-                if let realError = err {
-                    self.statusSubject.send(.error)
-                    print(realError.localizedDescription)
-                    return
-                }
-            }
+            schedule(nomReminder: reminder)
         }
-        center.getPendingNotificationRequests(completionHandler: { requests in
-            print("Notifs Requests:", requests)
+        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { requests in
+            print("Notifs Requests:", requests.count)
         })
         save()
     }
     
+    /// Checks notification permissions
+    /// - Parameter completion: handler
     func checkNotificationPermissions(completion: @escaping (ReminderStatus) -> ()) {
         let remindersEnabled = UserDefaults.standard.bool(forKey: "RemindersEnabled")
         guard remindersEnabled else {
@@ -79,7 +95,7 @@ class NomReminderController: ObservableObject {
             completion(.disabled)
             return
         }
-        center.getNotificationSettings { settings in
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .denied:
                 self.statusSubject.send(.unauthorized)
@@ -94,6 +110,7 @@ class NomReminderController: ObservableObject {
         }
     }
     
+    /// Uses `UserDefaults` to save the user’s choice for showing reminders and all scheduled reminder IDs
     private func save() {
         for type in MealType.allTypes {
             UserDefaults.standard.removeObject(forKey: type.description)
@@ -106,8 +123,10 @@ class NomReminderController: ObservableObject {
         print("Reminders scheduled")
     }
     
+    /// Requests notifications
+    /// - Parameter completion: handler
     func requestNotificationsAuthorization(completion: @escaping () -> ()) {
-        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let realError = error {
                 print(realError.localizedDescription)
                 self.statusSubject.send(.error)
@@ -133,22 +152,36 @@ class NomReminderController: ObservableObject {
     }
     
     init() {
+        nomNowAction = UNNotificationAction(
+            identifier: "nom.now",
+            title: "Nom",
+            options: []
+        )
+        nomCategory = UNNotificationCategory(
+            identifier: NotificationCategory.action.rawValue,
+            actions: [nomNowAction],
+            intentIdentifiers: [],
+            options: []
+        )
+        UNUserNotificationCenter.current().setNotificationCategories([nomCategory])
         nomReminders = [
             MealType.breakfast,
             MealType.lunch,
             MealType.dinner
         ].map { type in
+            let imageURL = Bundle.main.url(forResource: "RoundFace", withExtension: "jpg")
             return NomReminder(type: type,
-                                reminderHours: Nom.reminderDate(for: type),
-                                title: type.description,
-                                message: NSLocalizedString("Time to log your noms", comment: "")
-            )
+                               reminderHours: Nom.reminderDate(for: type),
+                               repeats: true,
+                               title: type.description,
+                               attachmentURL: imageURL,
+                               message: NSLocalizedString("Did you eat?", comment: ""))
         }
         
         _ = self.statusSubject
             .subscribe(on: DispatchQueue.main)
             .sink { (newStatus) in
-                print("New Status:", newStatus)
+                print("NotificationStatus:", newStatus)
                 DispatchQueue.main.async {
                     self.reminderStatus = newStatus
                 }
@@ -176,8 +209,8 @@ class NomReminderController: ObservableObject {
         │                          ┌───▼───┐               ┌──────▼─────┐        ┌────────────┐
         │                          │       │               │            │        │            │
         └──────────────────────────│.error │               │ .authorized│        │ .disabled  │
-                  ( On user prompt)│       │               │            ◀────────▶            │
-                                   └───────┘               └────────────┘        └────────────┘
+                  ( On user prompt) │       │               │            ◀────────▶            │
+                                      └───────┘               └────────────┘        └────────────┘
                                                                     (On user prompt)
 */
 public enum ReminderStatus {

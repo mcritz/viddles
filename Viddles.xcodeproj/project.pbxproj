@@ -18,6 +18,8 @@
 		0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F123BAA78B002EE9B3 /* NomReminder.swift */; };
 		0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F323BAA865002EE9B3 /* NomReminderController.swift */; };
 		0FE1FEE123C82912009C5DC4 /* NomsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1FEE023C82912009C5DC4 /* NomsTests.swift */; };
+		0FE1FEEC23D6223E009C5DC4 /* RoundFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FE1FEEB23D6223E009C5DC4 /* RoundFace.jpg */; };
+		0FE1FEEE23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1FEED23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift */; };
 		0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53971238F7FBC0064B42B /* AppDelegate.swift */; };
 		0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53973238F7FBC0064B42B /* SceneDelegate.swift */; };
 		0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */; };
@@ -60,6 +62,8 @@
 		0FE1FEDE23C82912009C5DC4 /* NomsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NomsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FE1FEE023C82912009C5DC4 /* NomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsTests.swift; sourceTree = "<group>"; };
 		0FE1FEE223C82912009C5DC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FE1FEEB23D6223E009C5DC4 /* RoundFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RoundFace.jpg; sourceTree = "<group>"; };
+		0FE1FEED23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomNotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		0FF5396E238F7FBC0064B42B /* Noms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF53971238F7FBC0064B42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FF53973238F7FBC0064B42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				0FF5398D238F7FC10064B42B /* Info.plist */,
 				0F5CCF1623B301E000CB9F70 /* Noms.entitlements */,
 				0FF5397A238F7FC00064B42B /* Assets.xcassets */,
+				0FE1FEEB23D6223E009C5DC4 /* RoundFace.jpg */,
 				0FF53971238F7FBC0064B42B /* AppDelegate.swift */,
 				0F5CCF0C23AEF3EF00CB9F70 /* Models */,
 				0F8310EC23BA6621002EE9B3 /* Views */,
@@ -193,6 +198,7 @@
 				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
 				0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */,
 				0F8310F523BAD902002EE9B3 /* Nom Reminder */,
+				0FE1FEED23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift */,
 			);
 			path = Viddles;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				0FF53981238F7FC00064B42B /* LaunchScreen.storyboard in Resources */,
 				0FF5397E238F7FC00064B42B /* Preview Assets.xcassets in Resources */,
 				0FF5397B238F7FC00064B42B /* Assets.xcassets in Resources */,
+				0FE1FEEC23D6223E009C5DC4 /* RoundFace.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +371,7 @@
 				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
 				0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */,
 				0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */,
+				0FE1FEEE23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift in Sources */,
 				0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */,
 				0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */,
 			);

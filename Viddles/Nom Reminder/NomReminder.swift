@@ -12,7 +12,8 @@ struct NomReminder: Codable {
     let id = UUID()
     let type: MealType
     let reminderHours: DateComponents
+    let repeats: Bool
     let title: String
+    let attachmentURL: URL?
     let message: String
-    let attachmentURL: URL? = Bundle.main.url(forResource: "RoundFace", withExtension: "pdf")
 }

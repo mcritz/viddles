@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = MealDay.newDay(context: persistentContainer.viewContext)
         }
         
+        UNUserNotificationCenter.current().delegate = self
+        
         return true
     }
 
@@ -95,5 +97,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        guard response.actionIdentifier == "nom.now" else {
+            print("Not correction action:", response.actionIdentifier)
+            completionHandler()
+            return
+        }
+        MealDay.eat(persistentContainer.viewContext,
+                    type: MealType.getCurrent(),
+                    date: Date())
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("Didn’t save")
+        }
+        print("Got response", response.actionIdentifier)
+        completionHandler()
+    }
 }
 
