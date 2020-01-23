@@ -90,18 +90,13 @@ struct ContentView: View {
                                                     type: .breakfast,
                                                     date: Nom.nominalDate(for: .breakfast,
                                                                           on: day.createdAt))
-                                        let verySoon = Date().addingTimeInterval(4)
-                                        let verySoonComponents = Calendar(identifier: .iso8601).dateComponents([.second, .minute, .hour, .day, .month, .year], from: verySoon)
-                                        let imgURL = Bundle.main.url(forResource: "RoundFace", withExtension: "jpg")
-                                        let nomReminder = NomReminder(type: .snack, reminderHours: verySoonComponents, repeats: false, title: "Om nom nom", attachmentURL: imgURL, message: "You Just Nommed!")
-                                        NomReminderController().schedule(nomReminder: nomReminder)
                                     }) {
                                         Text("Nom Breakfast")
                                     }
                                     Button(action: {
                                         MealDay.eat(self.context,
                                                     type: .lunch,
-                                                    date: Nom.nominalDate(for: .breakfast,
+                                                    date: Nom.nominalDate(for: .lunch,
                                                                           on: day.createdAt))
                                     }) {
                                         Text("Nom Lunch")
