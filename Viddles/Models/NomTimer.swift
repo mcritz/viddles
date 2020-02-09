@@ -6,9 +6,33 @@
 //  Copyright © 2020 pixel.science. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 final class NomTimer {
+    
+    let timerPublisher = Timer.TimerPublisher(interval: 1,
+                                              runLoop: .main,
+                                              mode: .default)
+    let cancellable: AnyCancellable?
+    
+    init() {
+        self.cancellable = timerPublisher.connect() as? AnyCancellable
+    }
+    
+    deinit {
+        self.cancellable?.cancel()
+    }
+}
+
+extension NomTimer {
+    
+    static func runTimer(interval: TimeInterval = 60, repeats: Bool = true, with block: @escaping (() -> ()) ) {
+        let timer = Timer(timeInterval: interval, repeats: repeats) { timer in
+            block()
+        }
+        timer.fire()
+    }
     
     private func nominallyEnglish(_ number: Int?, comp: Calendar.Component) -> String {
         guard let number = number else { return "" }

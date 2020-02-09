@@ -14,6 +14,11 @@ struct ContentView: View {
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     @EnvironmentObject var reminderCntlr: NomReminderController
     
+    private let timer = NomTimer()
+    
+    // TODO: Find a better way to do this
+    @State private var lastAteDescription: String = MealDay.lastAteDescription(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+    
     init() {
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
@@ -140,8 +145,11 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             BigButton()
                 .offset(x: 0, y: -20)
-            Text(MealDay.lastAteDescription(context: context))
+            Text(lastAteDescription)
                 .offset(x: 0, y: -65)
+                .onReceive(timer.timerPublisher) { _ in
+                    self.lastAteDescription = MealDay.lastAteDescription(context: self.context)
+                }
         }
     }
 }
