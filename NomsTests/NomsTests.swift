@@ -19,7 +19,6 @@ class NomsTests: XCTestCase {
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testPerformanceExample() {
@@ -51,6 +50,24 @@ class NomsTests: XCTestCase {
         XCTAssertNotNil(nom.createdAt)
         XCTAssertNil(nom.meal)
         XCTAssertNotNil(nom.imageName)
+        XCTAssertNotNil(nom.imageName())
+        
+        let getAllNomsFetchRequest = Nom.getAllNoms()
+        XCTAssertNotNil(getAllNomsFetchRequest)
+        let allNoms = try? context.fetch(getAllNomsFetchRequest)
+        XCTAssertNotNil(allNoms)
+        
+        for type in MealType.allTypes {
+            let someDate = Nom.nominalDate(for: type, on: Date())
+            XCTAssertNotNil(someDate)
+        }
+    }
+    
+    func testImageName() {
+        let omNom = Nom(context: delegate.persistentContainer.viewContext)
+        let name = omNom.imageName()
+        let image = UIImage(named: name)
+        XCTAssertNotNil(image!)
     }
     
     func testNomFetchRequest() {
