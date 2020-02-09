@@ -143,7 +143,7 @@ extension MealDay {
             let lastMealDay = try context.fetch(request).first
             let lastMealOfLastMealDay = lastMealDay?.meals.sorted(by: {
                 if let comparison = $0.createdAt?.distance(to: $1.createdAt!) {
-                    return comparison > 0
+                    return comparison < 0
                 }
                 return false
             }).first
