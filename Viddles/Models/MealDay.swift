@@ -113,3 +113,44 @@ extension MealDay {
         }
     }
 }
+
+
+extension MealDay {
+    
+    static func lastAteDescription(context: NSManagedObjectContext) -> String {
+        guard let lastAteMeal = MealDay.lastAte(context: context),
+            let lastAteDate = lastAteMeal.createdAt else {
+                return ""
+        }
+        let relativeDescriptiveTime = NomTimer().timeSince(date: lastAteDate)
+        
+        if lastAteDate > Date() {
+            return "\(lastAteMeal.description) \(relativeDescriptiveTime)"
+        }
+        
+        if relativeDescriptiveTime.count == 0 {
+            return "Having \(lastAteMeal.description) right now"
+        }
+        return "\(relativeDescriptiveTime)since \(lastAteMeal.description)"
+    }
+    
+    static func lastAte(context: NSManagedObjectContext) -> Meal? {
+        let request = MealDay.fetchRequest() as! NSFetchRequest<MealDay>
+        let sorter = NSSortDescriptor(key: #keyPath(MealDay.createdAt), ascending: false)
+        request.sortDescriptors = [sorter]
+        request.fetchLimit = 1
+        do {
+            let lastMealDay = try context.fetch(request).first
+            let lastMealOfLastMealDay = lastMealDay?.meals.sorted(by: {
+                if let comparison = $0.createdAt?.distance(to: $1.createdAt!) {
+                    return comparison > 0
+                }
+                return false
+            }).first
+            return lastMealOfLastMealDay
+        } catch {
+            print("couldn’t fetch just one")
+        }
+        return nil
+    }
+}

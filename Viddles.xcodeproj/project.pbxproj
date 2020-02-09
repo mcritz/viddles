@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F18217423EA99020016BD7F /* NomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18217323EA99020016BD7F /* NomTimer.swift */; };
 		0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */; };
 		0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0F23AEF87000CB9F70 /* Meal.swift */; };
 		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F18217323EA99020016BD7F /* NomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomTimer.swift; sourceTree = "<group>"; };
 		0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nom.swift; sourceTree = "<group>"; };
 		0F5CCF0F23AEF87000CB9F70 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDay.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				0F5CCF0F23AEF87000CB9F70 /* Meal.swift */,
 				0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */,
 				0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */,
+				0F18217323EA99020016BD7F /* NomTimer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */,
 				0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */,
 				0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */,
+				0F18217423EA99020016BD7F /* NomTimer.swift in Sources */,
 				0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */,
 				0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */,
 				0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */,

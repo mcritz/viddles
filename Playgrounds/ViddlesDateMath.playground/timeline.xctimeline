@@ -3,33 +3,43 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=10&amp;CharacterRangeLoc=196&amp;EndingColumnNumber=15&amp;EndingLineNumber=9&amp;StartingColumnNumber=5&amp;StartingLineNumber=9&amp;Timestamp=600564762.78483"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=10&amp;CharacterRangeLoc=196&amp;EndingColumnNumber=15&amp;EndingLineNumber=9&amp;StartingColumnNumber=5&amp;StartingLineNumber=9&amp;Timestamp=602876167.500851"
          lockedSize = "{337, 74}"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=7&amp;CharacterRangeLoc=68&amp;EndingColumnNumber=12&amp;EndingLineNumber=5&amp;StartingColumnNumber=5&amp;StartingLineNumber=5&amp;Timestamp=600564762.785144"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=7&amp;CharacterRangeLoc=68&amp;EndingColumnNumber=12&amp;EndingLineNumber=5&amp;StartingColumnNumber=5&amp;StartingLineNumber=5&amp;Timestamp=602876167.501079"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=15&amp;CharacterRangeLoc=313&amp;EndingColumnNumber=20&amp;EndingLineNumber=11&amp;StartingColumnNumber=5&amp;StartingLineNumber=11&amp;Timestamp=600564762.785326"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=15&amp;CharacterRangeLoc=313&amp;EndingColumnNumber=20&amp;EndingLineNumber=11&amp;StartingColumnNumber=5&amp;StartingLineNumber=11&amp;Timestamp=602876167.501225"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=167&amp;CharacterRangeLoc=440&amp;EndingColumnNumber=0&amp;EndingLineNumber=17&amp;StartingColumnNumber=0&amp;StartingLineNumber=15&amp;Timestamp=600564762.7854789"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=1557&amp;CharacterRangeLoc=440&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=0&amp;StartingLineNumber=15&amp;Timestamp=602876167.50141"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=7&amp;CharacterRangeLoc=445&amp;EndingColumnNumber=12&amp;EndingLineNumber=15&amp;StartingColumnNumber=5&amp;StartingLineNumber=15&amp;Timestamp=600564762.785612"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=7&amp;CharacterRangeLoc=445&amp;EndingColumnNumber=12&amp;EndingLineNumber=15&amp;StartingColumnNumber=5&amp;StartingLineNumber=15&amp;Timestamp=602876167.501552"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=8&amp;CharacterRangeLoc=518&amp;EndingColumnNumber=13&amp;EndingLineNumber=16&amp;StartingColumnNumber=5&amp;StartingLineNumber=16&amp;Timestamp=600564762.785772"
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=8&amp;CharacterRangeLoc=518&amp;EndingColumnNumber=13&amp;EndingLineNumber=16&amp;StartingColumnNumber=5&amp;StartingLineNumber=16&amp;Timestamp=602876167.501672"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=63&amp;CharacterRangeLoc=1934&amp;EndingColumnNumber=0&amp;EndingLineNumber=59&amp;StartingColumnNumber=1&amp;StartingLineNumber=58&amp;Timestamp=602876167.501789"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mcritz/Library/Mobile%20Documents/com~apple~CloudDocs/Developer/Noms/Playgrounds/ViddlesDateMath.playground#CharacterRangeLen=274&amp;CharacterRangeLoc=1650&amp;EndingColumnNumber=0&amp;EndingLineNumber=55&amp;StartingColumnNumber=0&amp;StartingLineNumber=49&amp;Timestamp=602876167.501923"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>

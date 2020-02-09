@@ -83,6 +83,20 @@ class NomsTests: XCTestCase {
     
     func testMealDay() {
         let context = delegate.persistentContainer.viewContext
+        
+        let getAllMealsFetchRequest = MealDay.getAllMealDays()
+        do {
+            let allMeals = try context.fetch(getAllMealsFetchRequest)
+            allMeals.forEach {
+                context.delete($0)
+            }
+        } catch {
+            XCTFail("failed fetch request")
+        }
+        
+        let neverAteDescription = MealDay.lastAte(context: context)
+        XCTAssertNil(neverAteDescription)
+        
         let mealDay = MealDay.newDay(context: context)
         
         XCTAssertNotNil(mealDay.id)
@@ -92,12 +106,23 @@ class NomsTests: XCTestCase {
         XCTAssertNotNil(mealDay.orderedMeals)
         XCTAssertEqual(mealDay.meals.count, 0)
         
+        let allMealDays = MealDay.getAllMealDays()
+        XCTAssertNotNil(allMealDays)
+        
+        let mealDayForDate = MealDay.mealDay(context: context, for: Date())
+        XCTAssertNotNil(mealDayForDate)
+        
+        
         MealDay.eat(context, type: MealType.allTypes.randomElement()!, date: Date())
+        try? context.save()
         
         let fetchRequest =  NSFetchRequest<MealDay>(entityName: "MealDay")
         let mealDays = try? context.fetch(fetchRequest)
         XCTAssertNotNil(mealDays)
         
+        
+        let lastAteDescription = MealDay.lastAteDescription(context: context)
+        XCTAssertNotNil(lastAteDescription)
     }
 
 }

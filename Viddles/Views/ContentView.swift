@@ -140,6 +140,8 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             BigButton()
                 .offset(x: 0, y: -20)
+            Text(MealDay.lastAteDescription(context: context))
+                .offset(x: 0, y: -65)
         }
     }
 }
