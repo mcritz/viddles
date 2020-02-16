@@ -8,6 +8,10 @@
 
 import CoreData
 
+enum NomType: String {
+    case orange, green, blue, red, hydro
+}
+
 public class Nom: NSManagedObject {
     @NSManaged public var id: UUID?
     @NSManaged public var createdAt: Date?

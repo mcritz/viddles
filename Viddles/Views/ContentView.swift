@@ -30,31 +30,40 @@ struct ContentView: View {
     }
     
     fileprivate func BigButton() -> some View {
-        return Button(action: {
-            self.handleNomButton()
-        }) {
-            Text("Nom")
-                .font(.headline)
-                .bold()
-                .frame(minWidth: 80, maxWidth: .infinity)
-                .padding()
-                .foregroundColor(Color(.label))
-                .background(
-                    RadialGradient(gradient: Gradient(colors: [Color(.systemGreen), Color(.systemYellow)]),
-                                   center: .center,
-                                   startRadius: 0.0,
-                                   endRadius: 800.0)
-                )
-                .cornerRadius(40)
-                .padding(.horizontal, 20.0)
-        }.frame(minWidth: 150,
-                idealWidth: 320,
-                maxWidth: .infinity,
-                minHeight: 20,
-                idealHeight: 20,
-                maxHeight: 40,
-                alignment: .top)
-        .animation(.interactiveSpring())
+        return HStack(alignment: .top, spacing: 20) {
+            Button(action: {
+                self.handleNomButton()
+            }) {
+                Text("Nom")
+                    .font(.headline)
+                    .bold()
+                    .frame(minWidth: 180, idealWidth: 240, maxWidth: 320, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
+                    .foregroundColor(Color(.label))
+                    .background(
+                        RadialGradient(gradient: Gradient(colors: [Color(.systemGreen), Color(.systemYellow)]),
+                                       center: .center,
+                                       startRadius: 0.0,
+                                       endRadius: 800.0)
+                    )
+                    .cornerRadius(40)
+            }.frame(minWidth: 150,
+                    idealWidth: 320,
+                    maxWidth: .infinity,
+                    minHeight: 20,
+                    idealHeight: 20,
+                    maxHeight: 40,
+                    alignment: .top)
+            .animation(.interactiveSpring())
+            Image("DropIcon", bundle: nil)
+                .resizable()
+                .frame(width: 50, height: 50, alignment: .bottomLeading)
+                .onTapGesture {
+                    print("hydro!")
+                }
+                .animation(.interactiveSpring())
+        }
+        .frame(minWidth: 320, idealWidth: 320, maxWidth: 480, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .bottom)
+        .padding([.horizontal], 20)
     }
     
     
@@ -138,15 +147,20 @@ struct ContentView: View {
                 }
             }
             LinearGradient(gradient:
-                Gradient(colors: [Color("PrimaryTransparent"), Color("PrimaryBackground")]),
+                Gradient(colors: [
+                    Color("PrimaryTransparent"),
+                    Color("PrimaryBackground")
+                ]),
                            startPoint: .top,
                            endPoint: .bottom)
-                .frame(height: 120).offset(x: 0, y: 40)
+                .frame(height: 100).offset(x: 0, y: 40)
                 .edgesIgnoringSafeArea(.all)
             BigButton()
-                .offset(x: 0, y: -20)
+                .offset(x: 0, y: -10)
             Text(lastAteDescription)
-                .offset(x: 0, y: -65)
+                .font(.headline)
+                .bold()
+                .offset(x: 0, y: -70)
                 .onReceive(timer.timerPublisher) { _ in
                     self.lastAteDescription = MealDay.lastAteDescription(context: self.context)
                 }
