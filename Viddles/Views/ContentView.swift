@@ -78,78 +78,23 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .center) {
             Color("PrimaryBackground")
                 .edgesIgnoringSafeArea(.all)
-            VStack {
-                NavigationView {
-                    List(self.mealDays, id:\.self) { day in
-                        VStack {
-                            Text(day.description)
-                                .font(.headline)
-                                .multilineTextAlignment(.center)
-                            MealDayDetailView(mealDay: day)
-                                .contextMenu {
-                                    Button(action: {
-                                        MealDay.eat(self.context,
-                                                    type: .breakfast,
-                                                    date: Nom.nominalDate(for: .breakfast,
-                                                                          on: day.createdAt))
-                                    }) {
-                                        Text("Nom Breakfast")
-                                    }
-                                    Button(action: {
-                                        MealDay.eat(self.context,
-                                                    type: .lunch,
-                                                    date: Nom.nominalDate(for: .lunch,
-                                                                          on: day.createdAt))
-                                    }) {
-                                        Text("Nom Lunch")
-                                    }
-                                    Button(action: {
-                                        MealDay.eat(self.context,
-                                                    type: .dinner,
-                                                    date: Nom.nominalDate(for: .dinner,
-                                                                          on: day.createdAt))
-                                    }) {
-                                        Text("Nom Dinner")
-                                    }
-                                    Button(action: {
-                                        MealDay.eat(self.context,
-                                                    type: .snack,
-                                                    date: Nom.nominalDate(for: .snack,
-                                                                          on: day.createdAt))
-                                    }) {
-                                        Text("Nom Snack")
-                                    }
-                            }
-                        }
-                        .padding()
-                        .background(Color(.systemBackground))
-                        .cornerRadius(20)
-                        .animation(.spring(response: 0.5,
-                                           dampingFraction: 1.0,
-                                           blendDuration: 0.75))
-                    }
-                    .foregroundColor(Color(.label))
-                    .navigationBarTitle("Noms")
-                    .foregroundColor(Color("PrimaryAccent"))
-                    .navigationBarItems(trailing: notifcationPrefView())
-                }
-            }
-            LinearGradient(gradient:
-                Gradient(colors: [Color("PrimaryTransparent"), Color("PrimaryBackground")]),
-                           startPoint: .top,
-                           endPoint: .bottom)
-                .frame(height: 120).offset(x: 0, y: 40)
-                .edgesIgnoringSafeArea(.all)
-            BigButton()
-                .offset(x: 0, y: -20)
-            Text(lastAteDescription)
-                .offset(x: 0, y: -65)
-                .onReceive(timer.timerPublisher) { _ in
-                    self.lastAteDescription = MealDay.lastAteDescription(context: self.context)
-                }
+            DayDetailView(chartModel: .init("Today", goal: 1.0))
+//            LinearGradient(gradient:
+//                Gradient(colors: [Color("PrimaryTransparent"), Color("PrimaryBackground")]),
+//                           startPoint: .top,
+//                           endPoint: .bottom)
+//                .frame(height: 120).offset(x: 0, y: 40)
+//                .edgesIgnoringSafeArea(.all)
+//            BigButton()
+//                .offset(x: 0, y: -20)
+//            Text(lastAteDescription)
+//                .offset(x: 0, y: -65)
+//                .onReceive(timer.timerPublisher) { _ in
+//                    self.lastAteDescription = MealDay.lastAteDescription(context: self.context)
+//                }
         }
     }
 }

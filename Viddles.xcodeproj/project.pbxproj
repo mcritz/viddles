@@ -13,6 +13,7 @@
 		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
 		0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1323AFD39E00CB9F70 /* MealType.swift */; };
 		0F5CCF1923B301EF00CB9F70 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */; };
+		0F6A04F5264E3CFB0050439D /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A04F4264E3CFB0050439D /* DayDetailView.swift */; };
 		0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */; };
 		0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310ED23BA662D002EE9B3 /* NomsView.swift */; };
 		0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */; };
@@ -56,6 +57,7 @@
 		0F5CCF1323AFD39E00CB9F70 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		0F5CCF1623B301E000CB9F70 /* Noms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noms.entitlements; sourceTree = "<group>"; };
 		0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0F6A04F4264E3CFB0050439D /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailView.swift; sourceTree = "<group>"; };
 		0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+RandomAccessCollection.swift"; sourceTree = "<group>"; };
 		0F8310ED23BA662D002EE9B3 /* NomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsView.swift; sourceTree = "<group>"; };
 		0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDayDetailView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				0FF53978238F7FBC0064B42B /* ContentView.swift */,
 				0F8310ED23BA662D002EE9B3 /* NomsView.swift */,
 				0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */,
+				0F6A04F4264E3CFB0050439D /* DayDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				0FF53979238F7FBC0064B42B /* ContentView.swift in Sources */,
 				0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */,
 				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
+				0F6A04F5264E3CFB0050439D /* DayDetailView.swift in Sources */,
 				0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */,
 				0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */,
 				0FE1FEEE23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift in Sources */,
