@@ -8,17 +8,11 @@
 
 import Foundation
 
-enum MealType: String, Codable, CustomStringConvertible {
+enum MealType: String, Codable, CustomStringConvertible, CaseIterable {
     case snack, breakfast, lunch, dinner, midnight
     var description: String {
         get {
             return self.rawValue.capitalized(with: Locale.current)
-        }
-    }
-    
-    static var allTypes: [MealType] {
-        get {
-            return [.snack, .breakfast, .lunch, .dinner, .midnight]
         }
     }
     

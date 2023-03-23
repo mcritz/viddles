@@ -57,7 +57,7 @@ class NomsTests: XCTestCase {
         let allNoms = try? context.fetch(getAllNomsFetchRequest)
         XCTAssertNotNil(allNoms)
         
-        for type in MealType.allTypes {
+        for type in MealType.allCases {
             let someDate = Nom.nominalDate(for: type, on: Date())
             XCTAssertNotNil(someDate)
         }
@@ -129,14 +129,7 @@ class NomsTests: XCTestCase {
         let mealDayForDate = MealDay.mealDay(context: context, for: Date())
         XCTAssertNotNil(mealDayForDate)
         
-        
-        MealDay.eat(context, type: MealType.allTypes.randomElement()!, date: Date())
-        try? context.save()
-        
-        let fetchRequest =  NSFetchRequest<MealDay>(entityName: "MealDay")
-        let mealDays = try? context.fetch(fetchRequest)
-        XCTAssertNotNil(mealDays)
-        
+        XCTFail("not implemented")
         
         let lastAteDescription = MealDay.lastAteDescription(context: context)
         XCTAssertNotNil(lastAteDescription)

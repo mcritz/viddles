@@ -77,29 +77,6 @@ extension MealDay {
         try? context.save()
         return newDay
     }
-    
-    
-    static func eat(_ context: NSManagedObjectContext,
-                         type: MealType = MealType.getCurrent(),
-                         date: Date = Date()) {
-        
-        let mealDay = MealDay.mealDay(context: context, for: date)
-        let currentMeal = mealDay.meals.filter{ meal -> Bool in
-            return meal.type == type.rawValue
-        }
-        if let matchedMeal = currentMeal.first {
-            matchedMeal.addToNoms(Nom.newNom(context: context, date: date))
-        } else {
-            let newMeal = Meal(context: context)
-            newMeal.setValue(UUID(), forKey: #keyPath(Meal.id))
-            newMeal.setValue(type.rawValue, forKey: #keyPath(Meal.type))
-            newMeal.setValue(mealDay, forKey: #keyPath(Meal.mealDay))
-            newMeal.setValue(date, forKey: #keyPath(Meal.createdAt))
-            newMeal.addToNoms(Nom.newNom(context: context, date: date))
-            context.insert(newMeal)
-        }
-        try? context.save()
-    }
 }
 
 extension MealDay {

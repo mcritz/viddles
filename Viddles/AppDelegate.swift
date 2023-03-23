@@ -106,9 +106,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             completionHandler()
             return
         }
-        MealDay.eat(persistentContainer.viewContext,
-                    type: MealType.getCurrent(),
-                    date: Date())
+        // FIXME: Need to implement
+//        MealDay.eat(persistentContainer.viewContext,
+//                    type: MealType.getCurrent(),
+//                    date: Date())
         do {
             try persistentContainer.viewContext.save()
         } catch {

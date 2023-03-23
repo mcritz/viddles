@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 struct DayDetailView: View {
@@ -5,20 +6,101 @@ struct DayDetailView: View {
     var chartModel = ChartModel("Today’s Total", goal: 1.0)
     
     var body: some View {
-        VStack {
-            Image("RoundFaceLarge")
-                .resizable()
-                .frame(minWidth: 50, idealWidth: 100, maxWidth: 150, minHeight: 50, idealHeight: 100, maxHeight: 150, alignment: .center)
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Today’s Total")
-                    .font(.caption)
-                    .bold()
-                ChartView(chartModel)
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack {
+                    //                Image("RoundFaceLarge")
+                    //                    .resizable()
+                    //                    .aspectRatio(contentMode: .fit)
+                    //                    .frame(minWidth: 50, idealWidth: 100, maxWidth: 150, minHeight: 50, idealHeight: 100, maxHeight: 150, alignment: .center)
+                    MealEntryView()
+                        .padding()
+                    MealEntryView()
+                        .padding()
+                    MealEntryView()
+                        .padding()
+                }
+                .shadow(radius: 44)
             }
-            .padding()
-            Button("Nom") {
-                chartModel.increase(0.25)
+            .background {
+                Image("HealthyBackground")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
             }
+            ZStack(alignment: .bottom) {
+//                LinearGradient(gradient: Gradient(colors: [.primary.opacity(0.7), .clear, .clear]),
+//                               startPoint: .bottom,
+//                               endPoint: .center)
+                VStack(spacing: 16) {
+                    
+                    HStack(spacing: 16) {
+                        Button {
+                            print("add meal")
+                        } label: {
+                            ViewThatFits(in: .horizontal) {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "fork.knife")
+                                    Text("Add meal")
+                                        .font(.headline)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 4)
+                                HStack {
+                                    Image(systemName: "fork.knife")
+                                    Text("Add")
+                                        .font(.headline)
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        Button {
+                            print("nom")
+                            chartModel.increase(0.25)
+                        } label: {
+                            ViewThatFits(in: .horizontal) {
+                                HStack {
+                                    Image(systemName: "carrot.fill")
+                                    Text("Snacks: 0")
+                                        .font(.headline)
+                                }
+                                .padding(.vertical, 4)
+                                HStack {
+                                    Image(systemName: "carrot.fill")
+                                    Text("0")
+                                        .font(.headline)
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        Button {
+                            chartModel.increase(0.25)
+                            print("h20")
+                        } label: {
+                            ViewThatFits(in: .horizontal) {
+                                HStack {
+                                    Image(systemName: "drop.fill")
+                                    Text("H₂O: 17")
+                                        .font(.headline)
+                                }
+                                .padding(.vertical, 4)
+                                HStack {
+                                    Image(systemName: "drop.fill")
+                                    Text("17")
+                                        .font(.headline)
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                        .buttonStyle(BorderedProminentButtonStyle())
+                    }
+                }
+                .padding()
+            }
+//            .buttonBorderShape(.roundedRectangle(radius: 40))
         }
     }
 }
@@ -96,6 +178,7 @@ struct ChartView: View {
                         update(someValue.location)
                     })
             )
+        
 //            .overlay(
 //                Circle()
 //                    .fill(Color.blue)

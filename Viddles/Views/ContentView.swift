@@ -14,24 +14,12 @@ struct ContentView: View {
     @FetchRequest(fetchRequest: MealDay.getAllMealDays()) var mealDays: FetchedResults<MealDay>
     @EnvironmentObject var reminderCntlr: NomReminderController
     
-    private let timer = NomTimer()
-    
     // TODO: Find a better way to do this
     @State private var lastAteDescription: String = MealDay.lastAteDescription(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     
-    init() {
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
-        UITableViewCell.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
-    }
-    
-    func handleNomButton() {
-        MealDay.eat(self.context)
-    }
-    
     fileprivate func BigButton() -> some View {
         return Button(action: {
-            self.handleNomButton()
+            print("pressed nom")
         }) {
             Text("Nom")
                 .font(.headline)
@@ -54,7 +42,6 @@ struct ContentView: View {
                 idealHeight: 20,
                 maxHeight: 40,
                 alignment: .top)
-        .animation(.interactiveSpring())
     }
     
     
@@ -82,19 +69,6 @@ struct ContentView: View {
             Color("PrimaryBackground")
                 .edgesIgnoringSafeArea(.all)
             DayDetailView(chartModel: .init("Today", goal: 1.0))
-//            LinearGradient(gradient:
-//                Gradient(colors: [Color("PrimaryTransparent"), Color("PrimaryBackground")]),
-//                           startPoint: .top,
-//                           endPoint: .bottom)
-//                .frame(height: 120).offset(x: 0, y: 40)
-//                .edgesIgnoringSafeArea(.all)
-//            BigButton()
-//                .offset(x: 0, y: -20)
-//            Text(lastAteDescription)
-//                .offset(x: 0, y: -65)
-//                .onReceive(timer.timerPublisher) { _ in
-//                    self.lastAteDescription = MealDay.lastAteDescription(context: self.context)
-//                }
         }
     }
 }

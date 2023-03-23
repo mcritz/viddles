@@ -3,19 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F18217423EA99020016BD7F /* NomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F18217323EA99020016BD7F /* NomTimer.swift */; };
-		0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */; };
 		0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF0F23AEF87000CB9F70 /* Meal.swift */; };
 		0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */; };
 		0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5CCF1323AFD39E00CB9F70 /* MealType.swift */; };
 		0F5CCF1923B301EF00CB9F70 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */; };
+		0F624C6F2896D47B00805E13 /* MealQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F624C6E2896D47B00805E13 /* MealQuality.swift */; };
+		0F624C712896DE0100805E13 /* NomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F624C702896DE0100805E13 /* NomTimer.swift */; };
+		0F624C732897060B00805E13 /* MealListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F624C722897060B00805E13 /* MealListView.swift */; };
 		0F6A04F5264E3CFB0050439D /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A04F4264E3CFB0050439D /* DayDetailView.swift */; };
+		0F6AA44229CD046E00F49825 /* MealEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6AA44129CD046E00F49825 /* MealEntryView.swift */; };
 		0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */; };
-		0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310ED23BA662D002EE9B3 /* NomsView.swift */; };
 		0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */; };
 		0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F123BAA78B002EE9B3 /* NomReminder.swift */; };
 		0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8310F323BAA865002EE9B3 /* NomReminderController.swift */; };
@@ -50,16 +51,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F18217323EA99020016BD7F /* NomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomTimer.swift; sourceTree = "<group>"; };
-		0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nom.swift; sourceTree = "<group>"; };
 		0F5CCF0F23AEF87000CB9F70 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDay.swift; sourceTree = "<group>"; };
 		0F5CCF1323AFD39E00CB9F70 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		0F5CCF1623B301E000CB9F70 /* Noms.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noms.entitlements; sourceTree = "<group>"; };
 		0F5CCF1823B301EF00CB9F70 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0F624C6E2896D47B00805E13 /* MealQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealQuality.swift; sourceTree = "<group>"; };
+		0F624C702896DE0100805E13 /* NomTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NomTimer.swift; sourceTree = "<group>"; };
+		0F624C722897060B00805E13 /* MealListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListView.swift; sourceTree = "<group>"; };
 		0F6A04F4264E3CFB0050439D /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailView.swift; sourceTree = "<group>"; };
+		0F6AA44129CD046E00F49825 /* MealEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntryView.swift; sourceTree = "<group>"; };
 		0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+RandomAccessCollection.swift"; sourceTree = "<group>"; };
-		0F8310ED23BA662D002EE9B3 /* NomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomsView.swift; sourceTree = "<group>"; };
 		0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDayDetailView.swift; sourceTree = "<group>"; };
 		0F8310F123BAA78B002EE9B3 /* NomReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminder.swift; sourceTree = "<group>"; };
 		0F8310F323BAA865002EE9B3 /* NomReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NomReminderController.swift; sourceTree = "<group>"; };
@@ -114,9 +116,10 @@
 			children = (
 				0FF53975238F7FBC0064B42B /* Viddles.xcdatamodeld */,
 				0F5CCF0F23AEF87000CB9F70 /* Meal.swift */,
-				0F5CCF0D23AEF3FF00CB9F70 /* Nom.swift */,
 				0F5CCF1123AFCACD00CB9F70 /* MealDay.swift */,
-				0F18217323EA99020016BD7F /* NomTimer.swift */,
+				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
+				0F624C6E2896D47B00805E13 /* MealQuality.swift */,
+				0F624C702896DE0100805E13 /* NomTimer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,9 +144,10 @@
 			children = (
 				0FF5397F238F7FC00064B42B /* LaunchScreen.storyboard */,
 				0FF53978238F7FBC0064B42B /* ContentView.swift */,
-				0F8310ED23BA662D002EE9B3 /* NomsView.swift */,
 				0F8310EF23BA665B002EE9B3 /* MealDayDetailView.swift */,
 				0F6A04F4264E3CFB0050439D /* DayDetailView.swift */,
+				0F624C722897060B00805E13 /* MealListView.swift */,
+				0F6AA44129CD046E00F49825 /* MealEntryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,7 +205,6 @@
 				0FF53973238F7FBC0064B42B /* SceneDelegate.swift */,
 				0FF53982238F7FC00064B42B /* Info.plist */,
 				0FF5397C238F7FC00064B42B /* Preview Content */,
-				0F5CCF1323AFD39E00CB9F70 /* MealType.swift */,
 				0F8310EA23BA6608002EE9B3 /* Set+RandomAccessCollection.swift */,
 				0F8310F523BAD902002EE9B3 /* Nom Reminder */,
 				0FE1FEED23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift */,
@@ -288,8 +291,9 @@
 		0FF53966238F7FBB0064B42B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = pixel.science;
 				TargetAttributes = {
 					0FE1FEDD23C82912009C5DC4 = {
@@ -366,21 +370,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6AA44229CD046E00F49825 /* MealEntryView.swift in Sources */,
 				0F8310F223BAA78B002EE9B3 /* NomReminder.swift in Sources */,
 				0F8310EB23BA6608002EE9B3 /* Set+RandomAccessCollection.swift in Sources */,
 				0F5CCF1423AFD39E00CB9F70 /* MealType.swift in Sources */,
-				0F18217423EA99020016BD7F /* NomTimer.swift in Sources */,
+				0F624C732897060B00805E13 /* MealListView.swift in Sources */,
 				0FF53972238F7FBC0064B42B /* AppDelegate.swift in Sources */,
 				0F5CCF1023AEF87000CB9F70 /* Meal.swift in Sources */,
+				0F624C6F2896D47B00805E13 /* MealQuality.swift in Sources */,
 				0FF53977238F7FBC0064B42B /* Viddles.xcdatamodeld in Sources */,
+				0F624C712896DE0100805E13 /* NomTimer.swift in Sources */,
 				0FF53979238F7FBC0064B42B /* ContentView.swift in Sources */,
-				0F8310EE23BA662D002EE9B3 /* NomsView.swift in Sources */,
 				0F5CCF1223AFCACD00CB9F70 /* MealDay.swift in Sources */,
 				0F6A04F5264E3CFB0050439D /* DayDetailView.swift in Sources */,
 				0F8310F623BADED3002EE9B3 /* NomReminderController.swift in Sources */,
 				0F8310F023BA665B002EE9B3 /* MealDayDetailView.swift in Sources */,
 				0FE1FEEE23D6275D009C5DC4 /* NomNotificationCenterDelegate.swift in Sources */,
-				0F5CCF0E23AEF3FF00CB9F70 /* Nom.swift in Sources */,
 				0FF53974238F7FBC0064B42B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UB37VMGP6E;
 				INFOPLIST_FILE = NomsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,6 +453,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UB37VMGP6E;
 				INFOPLIST_FILE = NomsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,6 +493,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -546,6 +554,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -583,16 +592,19 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
-				DEVELOPMENT_TEAM = UB37VMGP6E;
+				DEVELOPMENT_TEAM = FS69ZZRN45;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Viddles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Snackems;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.6;
-				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
+				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.diet;
 				PRODUCT_NAME = Noms;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -609,16 +621,19 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Viddles/Preview Content\"";
-				DEVELOPMENT_TEAM = UB37VMGP6E;
+				DEVELOPMENT_TEAM = FS69ZZRN45;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Viddles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Snackems;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.6;
-				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.noms;
+				PRODUCT_BUNDLE_IDENTIFIER = science.pixel.diet;
 				PRODUCT_NAME = Noms;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -631,7 +646,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UB37VMGP6E;
+				DEVELOPMENT_TEAM = FS69ZZRN45;
 				INFOPLIST_FILE = ViddlesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -651,7 +666,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UB37VMGP6E;
+				DEVELOPMENT_TEAM = FS69ZZRN45;
 				INFOPLIST_FILE = ViddlesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -112,7 +112,7 @@ class NomReminderController: ObservableObject {
     
     /// Uses `UserDefaults` to save the user’s choice for showing reminders and all scheduled reminder IDs
     private func save() {
-        for type in MealType.allTypes {
+        for type in MealType.allCases {
             UserDefaults.standard.removeObject(forKey: type.description)
         }
         for reminder in nomReminders {
@@ -171,14 +171,14 @@ class NomReminderController: ObservableObject {
         ].map { type in
             let imageURL = Bundle.main.url(forResource: "RoundFace", withExtension: "jpg")
             return NomReminder(type: type,
-                               reminderHours: Nom.reminderDate(for: type),
+                               reminderHours: Meal.reminderDate(for: type),
                                repeats: true,
                                title: type.description,
                                attachmentURL: imageURL,
                                message: NSLocalizedString("Did you eat?", comment: ""))
         }
         
-        _ = self.statusSubject
+        self.statusSubject
             .subscribe(on: DispatchQueue.main)
             .sink { (newStatus) in
                 print("NotificationStatus:", newStatus)

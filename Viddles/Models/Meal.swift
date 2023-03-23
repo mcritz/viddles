@@ -12,8 +12,16 @@ public class Meal: NSManagedObject {
     @NSManaged public var id: UUID
     @NSManaged public var type: String?
     @NSManaged public var createdAt: Date?
-    @NSManaged public var noms: Set<Nom>
     @NSManaged public var mealDay: Set<MealDay>?
+    @NSManaged private var quality: Int16
+    public var mealQuality: MealQuality {
+        set {
+            self.quality = newValue.rawValue
+        }
+        get {
+            MealQuality(rawValue: quality) ?? .unknown
+        }
+    }
     
     override public var description: String {
         get {
@@ -39,45 +47,16 @@ extension Meal {
 }
 
 extension Meal {
-    @objc(addNomsObject:)
-    @NSManaged public func addToNoms(_ value: Nom)
-    
-    @objc(removeNomsObject:)
-    @NSManaged public func removeFromNoms(_ value: Nom)
-}
-
-extension Meal {
-    static func new(in context: NSManagedObjectContext, with nom: Nom?) -> Meal {
-        let newMeal = Meal(context: context)
-        newMeal.setValue(UUID(), forKey: #keyPath(Meal.id))
-        newMeal.setValue(MealType.getCurrent().rawValue, forKey: #keyPath(Meal.type))
-        var mealDate = Date()
-        if let realNomDate = nom?.createdAt {
-            mealDate = realNomDate
-        }
-        newMeal.setValue(mealDate, forKey: #keyPath(Meal.createdAt))
-        if let realNom = nom {
-            newMeal.addToNoms(realNom)
-        }
-        return newMeal
-    }
-    public func eat() {
-        guard let context = self.managedObjectContext else { return }
-        let newNom = Nom(context: context)
-        newNom.setValue(150, forKey: #keyPath(Nom.value))
-        newNom.setValue(self, forKey: #keyPath(Nom.meal))
-        newNom.setValue(Date(), forKey: #keyPath(Nom.createdAt))
-        self.addToNoms(newNom)
-        try? context.save()
-    }
-    public func vomit() {
-        guard let realNom = noms.randomElement() else { return }
-        managedObjectContext?.delete(realNom)
-        try? managedObjectContext?.save()
-
-        if noms.count < 1 {
-            let day = self.value(forKeyPath: #keyPath(Meal.mealDay)) as? MealDay
-            day?.delete(meal: self)
+    static func reminderDate(for type: MealType) -> DateComponents {
+        switch type {
+        case .breakfast:
+            return DateComponents(hour: 9)
+        case .lunch:
+            return DateComponents(hour: 13)
+        case .dinner:
+            return DateComponents(hour: 19)
+        default:
+            return DateComponents(hour: 22)
         }
     }
 }

@@ -9,7 +9,17 @@
 import Foundation
 
 struct NomReminder: Codable {
-    let id = UUID()
+    internal init(id: UUID = UUID(), type: MealType, reminderHours: DateComponents, repeats: Bool, title: String, attachmentURL: URL? = nil, message: String) {
+        self.id = id
+        self.type = type
+        self.reminderHours = reminderHours
+        self.repeats = repeats
+        self.title = title
+        self.attachmentURL = attachmentURL
+        self.message = message
+    }
+    
+    let id: UUID
     let type: MealType
     let reminderHours: DateComponents
     let repeats: Bool

@@ -15,10 +15,7 @@ struct MealDayDetailView: View {
     var body: some View {
         VStack(alignment: .center) {
             ForEach(mealDay.orderedMeals, id: \.self) { meal in
-                NomsView(meel: meal)
-                    .animation(.spring(response: 0.5,
-                        dampingFraction: 1.0,
-                        blendDuration: 0.75))
+                Text(meal.description)
             }
         }
     }
